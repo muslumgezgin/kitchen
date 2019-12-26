@@ -1,6 +1,7 @@
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 module.exports = (app, passport) => {
   app.use(bodyParser.json());
@@ -18,6 +19,8 @@ module.exports = (app, passport) => {
       saveUninitialized: false
     })
   );
+
+  app.use(cors());
 
   app.use(passport.initialize());
   app.use(passport.session());
