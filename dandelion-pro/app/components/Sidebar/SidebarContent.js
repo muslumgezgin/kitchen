@@ -1,40 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Avatar from '@material-ui/core/Avatar';
-import brand from 'dan-api/dummy/brand';
-import dummy from 'dan-api/dummy/dummyContents';
-import logo from 'dan-images/logo.svg';
-import MainMenu from './MainMenu';
-import styles from './sidebar-jss';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import classNames from "classnames";
+import { NavLink } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Avatar from "@material-ui/core/Avatar";
+import brand from "dan-api/dummy/brand";
+import dummy from "dan-api/dummy/dummyContents";
+import logo from "dan-images/logo.svg";
+import MainMenu from "./MainMenu";
+import styles from "./sidebar-jss";
 
 class SidebarContent extends React.Component {
   state = {
-    transform: 0,
+    transform: 0
   };
 
   componentDidMount = () => {
     // Scroll content to top
-    const mainContent = document.getElementById('sidebar');
-    mainContent.addEventListener('scroll', this.handleScroll);
-  }
+    const mainContent = document.getElementById("sidebar");
+    mainContent.addEventListener("scroll", this.handleScroll);
+  };
 
   componentWillUnmount() {
-    const mainContent = document.getElementById('sidebar');
-    mainContent.removeEventListener('scroll', this.handleScroll);
+    const mainContent = document.getElementById("sidebar");
+    mainContent.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleScroll = (event) => {
+  handleScroll = event => {
     const scroll = event.target.scrollTop;
     this.setState({
       transform: scroll
     });
-  }
+  };
 
   render() {
     const {
@@ -56,78 +56,50 @@ class SidebarContent extends React.Component {
 
     const setStatus = st => {
       switch (st) {
-        case 'online':
+        case "online":
           return classes.online;
-        case 'idle':
+        case "idle":
           return classes.idle;
-        case 'bussy':
+        case "bussy":
           return classes.bussy;
         default:
           return classes.offline;
       }
     };
     return (
-      <div className={classNames(classes.drawerInner, !drawerPaper ? classes.drawerPaperClose : '')}>
+      <div
+        className={classNames(
+          classes.drawerInner,
+          !drawerPaper ? classes.drawerPaperClose : ""
+        )}
+      >
         <div className={classes.drawerHeader}>
-          <NavLink to="/app" className={classNames(classes.brand, classes.brandBar, turnDarker && classes.darker)}>
-            <img src={logo} alt={brand.name} />
-            {brand.name}
+          <NavLink
+            to="/app"
+            className={classNames(
+              classes.brand,
+              classes.brandBar,
+              turnDarker && classes.darker
+            )}
+          >
+            <h3 style={{ color: "#0090e3", fontSize: "17px" }}>
+              Keukenvergelijking.nl
+            </h3>
           </NavLink>
-          {isLogin && (
-            <div
-              className={classNames(classes.profile, classes.user)}
-              style={{ opacity: 1 - (transform / 100), marginTop: transform * -0.3 }}
-            >
-              <Avatar
-                alt={dummy.user.name}
-                src={dummy.user.avatar}
-                className={classNames(classes.avatar, classes.bigAvatar)}
-              />
-              <div>
-                <h4>{dummy.user.name}</h4>
-                <Button size="small" onClick={openMenuStatus}>
-                  <i className={classNames(classes.dotStatus, setStatus(status))} />
-                  {status}
-                </Button>
-                <Menu
-                  id="status-menu"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={closeMenuStatus}
-                  className={classes.statusMenu}
-                >
-                  <MenuItem onClick={() => changeStatus('online')}>
-                    <i className={classNames(classes.dotStatus, classes.online)} />
-                    Online
-                  </MenuItem>
-                  <MenuItem onClick={() => changeStatus('idle')}>
-                    <i className={classNames(classes.dotStatus, classes.idle)} />
-                    Idle
-                  </MenuItem>
-                  <MenuItem onClick={() => changeStatus('bussy')}>
-                    <i className={classNames(classes.dotStatus, classes.bussy)} />
-                    Bussy
-                  </MenuItem>
-                  <MenuItem onClick={() => changeStatus('offline')}>
-                    <i className={classNames(classes.dotStatus, classes.offline)} />
-                    Offline
-                  </MenuItem>
-                </Menu>
-              </div>
-            </div>
-          )}
         </div>
         <div
           id="sidebar"
-          className={
-            classNames(
-              classes.menuContainer,
-              leftSidebar && classes.rounded,
-              isLogin && classes.withProfile
-            )
-          }
+          className={classNames(
+            classes.menuContainer,
+            leftSidebar && classes.rounded,
+            isLogin && classes.withProfile
+          )}
         >
-          <MainMenu loadTransition={loadTransition} dataMenu={dataMenu} toggleDrawerOpen={toggleDrawerOpen} />
+          <MainMenu
+            loadTransition={loadTransition}
+            dataMenu={dataMenu}
+            toggleDrawerOpen={toggleDrawerOpen}
+          />
         </div>
       </div>
     );
@@ -155,7 +127,7 @@ SidebarContent.defaultProps = {
   toggleDrawerOpen: () => {},
   loadTransition: () => {},
   anchorEl: null,
-  isLogin: true,
+  isLogin: true
 };
 
 export default withStyles(styles)(SidebarContent);

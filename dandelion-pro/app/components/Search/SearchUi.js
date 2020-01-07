@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Autosuggest from 'react-autosuggest';
-import { NavLink } from 'react-router-dom';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
-import suggestionsApi from 'dan-api/ui/menu';
-import styles from './search-jss';
+import React from "react";
+import PropTypes from "prop-types";
+import Autosuggest from "react-autosuggest";
+import { NavLink } from "react-router-dom";
+import match from "autosuggest-highlight/match";
+import parse from "autosuggest-highlight/parse";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import MenuItem from "@material-ui/core/MenuItem";
+import { withStyles } from "@material-ui/core/styles";
+import suggestionsApi from "dan-api/ui/menu";
+import styles from "./search-jss";
 
 const menu = [];
 
@@ -22,7 +22,7 @@ function renderInput(inputProps) {
       fullWidth
       InputProps={{
         inputRef: ref,
-        ...other,
+        ...other
       }}
     />
   );
@@ -32,9 +32,14 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   const matches = match(suggestion.name, query);
   const parts = parse(suggestion.name, matches);
   return (
-    <MenuItem button selected={isHighlighted} component={NavLink} to={suggestion.link}>
+    <MenuItem
+      button
+      selected={isHighlighted}
+      component={NavLink}
+      to={suggestion.link}
+    >
       <div>
-        {parts.map((part, index) => (
+        {parts.map((part, index) =>
           part.highlight ? (
             <span key={String(index)} style={{ fontWeight: 700 }}>
               {part.text}
@@ -44,7 +49,7 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
               {part.text}
             </strong>
           )
-        ))}
+        )}
       </div>
     </MenuItem>
   );
@@ -53,11 +58,7 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
 function renderSuggestionsContainer(options) {
   const { containerProps, children } = options;
 
-  return (
-    <Paper {...containerProps}>
-      {children}
-    </Paper>
-  );
+  return <Paper {...containerProps}>{children}</Paper>;
 }
 
 function getSuggestionValue(suggestion) {
@@ -68,21 +69,27 @@ function getSuggestions(value) {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
-  return inputLength === 0 ? [] : menu.filter(suggestion => {
-    const keep = (!inputValue || suggestion.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) && count < 5;
+  return inputLength === 0
+    ? []
+    : menu.filter(suggestion => {
+        const keep =
+          (!inputValue ||
+            suggestion.name.toLowerCase().indexOf(inputValue.toLowerCase()) !==
+              -1) &&
+          count < 5;
 
-    if (keep) {
-      count += 1;
-    }
+        if (keep) {
+          count += 1;
+        }
 
-    return keep;
-  });
+        return keep;
+      });
 }
 
 class SearchUi extends React.Component {
   state = {
-    value: '',
-    suggestions: [],
+    value: "",
+    suggestions: []
   };
 
   componentDidMount() {
@@ -101,28 +108,28 @@ class SearchUi extends React.Component {
 
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(value),
+      suggestions: getSuggestions(value)
     });
   };
 
   handleSuggestionsClearRequested = () => {
     this.setState({
-      suggestions: [],
+      suggestions: []
     });
   };
 
   handleChange = (event, { newValue }) => {
     this.setState({
-      value: newValue,
+      value: newValue
     });
   };
 
   handleSuggestionSelected = (event, { suggestion, method }) => {
     const { history } = this.props;
-    if (method === 'enter') {
+    if (method === "enter") {
       history.push(suggestion.link);
     }
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -134,7 +141,7 @@ class SearchUi extends React.Component {
           container: classes.containerSearch,
           suggestionsContainerOpen: classes.suggestionsContainerOpen,
           suggestionsList: classes.suggestionsList,
-          suggestion: classes.suggestion,
+          suggestion: classes.suggestion
         }}
         renderInputComponent={renderInput}
         suggestions={suggestions}
@@ -147,9 +154,9 @@ class SearchUi extends React.Component {
         className={classes.autocomplete}
         inputProps={{
           classes,
-          placeholder: 'Search UI',
+          placeholder: "Zoeken",
           value,
-          onChange: this.handleChange,
+          onChange: this.handleChange
         }}
       />
     );
@@ -158,7 +165,7 @@ class SearchUi extends React.Component {
 
 SearchUi.propTypes = {
   classes: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(SearchUi);

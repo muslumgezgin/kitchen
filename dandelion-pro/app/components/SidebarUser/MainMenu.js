@@ -39,11 +39,6 @@ class MainMenu extends React.Component {
             <div key={index.toString()}>
               <ListItem
                 button
-                className={classNames(
-                  classes.head,
-                  item.icon ? classes.iconed : "",
-                  open.indexOf(item.key) > -1 ? classes.opened : ""
-                )}
                 component={LinkBtn}
                 onClick={() =>
                   item.child.length > 0
@@ -69,20 +64,22 @@ class MainMenu extends React.Component {
                     <ExpandMore />
                   ))}
               </ListItem>
-              <Collapse
-                component="div"
-                className={classNames(
-                  classes.nolist,
-                  item.keyParent ? classes.child : ""
-                )}
-                in={open.indexOf(item.key) > -1}
-                timeout="auto"
-                unmountOnExit
-              >
-                <List className={classes.dense} component="nav" dense>
-                  {getMenus(item.child, "key")}
-                </List>
-              </Collapse>
+              {item.child.length > 0 && (
+                <Collapse
+                  component="div"
+                  className={classNames(
+                    classes.nolist,
+                    item.keyParent ? classes.child : ""
+                  )}
+                  in={open.indexOf(item.key) > -1}
+                  timeout="auto"
+                  unmountOnExit
+                >
+                  <List className={classes.dense} component="nav" dense>
+                    {getMenus(item.child, "key")}
+                  </List>
+                </Collapse>
+              )}
             </div>
           );
         }
@@ -103,8 +100,6 @@ class MainMenu extends React.Component {
             key={index.toString()}
             button
             exact
-            className={classes.nested}
-            activeClassName={classes.active}
             component={LinkBtn}
             to={item.link}
             onClick={() => this.handleClick()}

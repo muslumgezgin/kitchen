@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import SearchIcon from '@material-ui/icons/Search';
-import Fab from '@material-ui/core/Fab';
-import Ionicon from 'react-ionicons';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import UserMenu from './UserMenu';
-import SearchUi from '../Search/SearchUi';
-import styles from './header-jss';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import classNames from "classnames";
+import Typography from "@material-ui/core/Typography";
+import Hidden from "@material-ui/core/Hidden";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import SearchIcon from "@material-ui/icons/Search";
+import Fab from "@material-ui/core/Fab";
+import Ionicon from "react-ionicons";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import UserMenu from "./UserMenu";
+import SearchUi from "../Search/SearchUi";
+import styles from "./header-jss";
 
 const elem = document.documentElement;
 
@@ -32,18 +32,18 @@ class Header extends React.Component {
   flagTitle = false;
 
   componentDidMount = () => {
-    window.addEventListener('scroll', this.handleScroll);
-  }
+    window.addEventListener("scroll", this.handleScroll);
+  };
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   handleScroll = () => {
     const doc = document.documentElement;
     const scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-    const newFlagDarker = (scroll > 30);
-    const newFlagTitle = (scroll > 40);
+    const newFlagDarker = scroll > 30;
+    const newFlagTitle = scroll > 40;
     if (this.flagDarker !== newFlagDarker) {
       this.setState({ turnDarker: newFlagDarker });
       this.flagDarker = newFlagDarker;
@@ -52,17 +52,20 @@ class Header extends React.Component {
       this.setState({ showTitle: newFlagTitle });
       this.flagTitle = newFlagTitle;
     }
-  }
+  };
 
   openFullScreen = () => {
     this.setState({ fullScreen: true });
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { /* Firefox */
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
       elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari & Opera */
       elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
       elem.msRequestFullscreen();
     }
   };
@@ -82,10 +85,10 @@ class Header extends React.Component {
 
   turnMode = mode => {
     const { changeMode } = this.props;
-    if (mode === 'light') {
-      changeMode('dark');
+    if (mode === "light") {
+      changeMode("dark");
     } else {
-      changeMode('light');
+      changeMode("light");
     }
   };
 
@@ -101,18 +104,13 @@ class Header extends React.Component {
       openGuide,
       history
     } = this.props;
-    const {
-      fullScreen,
-      open,
-      turnDarker,
-      showTitle
-    } = this.state;
+    const { fullScreen, open, turnDarker, showTitle } = this.state;
 
-    const setMargin = (sidebarPosition) => {
-      if (sidebarPosition === 'right-sidebar') {
+    const setMargin = sidebarPosition => {
+      if (sidebarPosition === "right-sidebar") {
         return classes.right;
       }
-      if (sidebarPosition === 'left-sidebar-big') {
+      if (sidebarPosition === "left-sidebar-big") {
         return classes.leftBig;
       }
       return classes.left;
@@ -120,16 +118,14 @@ class Header extends React.Component {
 
     return (
       <AppBar
-        className={
-          classNames(
-            classes.appBar,
-            classes.floatingBar,
-            margin && classes.appBarShift,
-            setMargin(position),
-            turnDarker && classes.darker,
-            gradient ? classes.gradientBg : classes.solidBg
-          )
-        }
+        className={classNames(
+          classes.appBar,
+          classes.floatingBar,
+          margin && classes.appBarShift,
+          setMargin(position),
+          turnDarker && classes.darker,
+          gradient ? classes.gradientBg : classes.solidBg
+        )}
       >
         <Toolbar disableGutters={!open}>
           <Fab
@@ -142,32 +138,19 @@ class Header extends React.Component {
           </Fab>
           <Hidden smDown>
             <div className={classes.headerProperties}>
-              <div className={classNames(classes.headerAction, showTitle && classes.fadeOut)}>
-                {fullScreen ? (
-                  <Tooltip title="Exit Full Screen" placement="bottom">
-                    <IconButton className={classes.button} onClick={this.closeFullScreen}>
-                      <Ionicon icon="ios-qr-scanner" />
-                    </IconButton>
-                  </Tooltip>
-                ) : (
-                  <Tooltip title="Full Screen" placement="bottom">
-                    <IconButton className={classes.button} onClick={this.openFullScreen}>
-                      <Ionicon icon="ios-qr-scanner" />
-                    </IconButton>
-                  </Tooltip>
+              <div
+                className={classNames(
+                  classes.headerAction,
+                  showTitle && classes.fadeOut
                 )}
-                <Tooltip title="Turn Dark/Light" placement="bottom">
-                  <IconButton className={classes.button} onClick={() => this.turnMode(mode)}>
-                    <Ionicon icon="ios-bulb-outline" />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Show Guide" placement="bottom">
-                  <IconButton className={classes.button} onClick={openGuide}>
-                    <Ionicon icon="ios-help-circle-outline" />
-                  </IconButton>
-                </Tooltip>
-              </div>
-              <Typography component="h2" className={classNames(classes.headerTitle, showTitle && classes.show)}>
+              />
+              <Typography
+                component="h2"
+                className={classNames(
+                  classes.headerTitle,
+                  showTitle && classes.show
+                )}
+              >
                 {title}
               </Typography>
             </div>
@@ -200,7 +183,7 @@ Header.propTypes = {
   title: PropTypes.string.isRequired,
   changeMode: PropTypes.func.isRequired,
   openGuide: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Header);
