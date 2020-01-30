@@ -10,27 +10,27 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paper: {
     height: 140,
     width: 100,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.secondary.light
   },
   control: {
     padding: theme.spacing(2),
     marginTop: theme.spacing(2)
-  },
+  }
 });
 
 class GuttersGrid extends React.Component {
   state = {
-    spacing: '2',
+    spacing: '2'
   };
 
   handleChange = key => (event, value) => {
     this.setState({
-      [key]: value,
+      [key]: value
     });
   };
 
@@ -41,7 +41,12 @@ class GuttersGrid extends React.Component {
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
-          <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
+          <Grid
+            container
+            className={classes.demo}
+            justify="center"
+            spacing={Number(spacing)}
+          >
             {[0, 1, 2].map(value => (
               <Grid key={value} item>
                 <Paper className={classes.paper} />
@@ -49,35 +54,13 @@ class GuttersGrid extends React.Component {
             ))}
           </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.control}>
-            <Grid container>
-              <Grid item>
-                <FormLabel>spacing</FormLabel>
-                <RadioGroup
-                  name="spacing"
-                  aria-label="spacing"
-                  value={spacing}
-                  onChange={this.handleChange('spacing')}
-                  row
-                >
-                  <FormControlLabel value="0" control={<Radio />} label="0" />
-                  <FormControlLabel value="1" control={<Radio />} label="1" />
-                  <FormControlLabel value="2" control={<Radio />} label="2" />
-                  <FormControlLabel value="3" control={<Radio />} label="3" />
-                  <FormControlLabel value="5" control={<Radio />} label="5" />
-                </RadioGroup>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
       </Grid>
     );
   }
 }
 
 GuttersGrid.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(GuttersGrid);
