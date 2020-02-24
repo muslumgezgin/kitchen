@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-indent */
+/* eslint-disable indent */
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
@@ -18,23 +20,31 @@ class UserDashBoard extends React.Component {
                     <meta property="twitter:title" content={title} />
                     <meta property="twitter:description" content={description} />
                 </Helmet>
-                <Grid container spacing={3}>
-                    <Grid item xs={4}>
-                        <PapperBlock title="Blank Page" desc="Some text description">
-                            Content
-                         </PapperBlock>
+                <PapperBlock title="Blank Page" desc="Some text description">
+                    <Grid container spacing={3}>
+                        <Grid item xs={1} />
+                        <Grid item xs={9}>
+                            <Grid container spacing={9}>
+                                <Grid item xs={4}>
+                                    <PapperBlock title="Blank Page" desc="Some text description">
+                                        Content
+                                    </PapperBlock>
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <PapperBlock title="Blank Page" desc="Some text description">
+                                        Content
+                                    </PapperBlock>
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <PapperBlock title="Blank Page" desc="Some text description">
+                                        Content
+                                    </PapperBlock>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={1} />
                     </Grid>
-                    <Grid item xs={4}>
-                        <PapperBlock title="Blank Page" desc="Some text description">
-                            Content
-                         </PapperBlock>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <PapperBlock title="Blank Page" desc="Some text description">
-                            Content
-                         </PapperBlock>
-                    </Grid>
-                </Grid>
+                </PapperBlock>
             </div>
         );
     }
