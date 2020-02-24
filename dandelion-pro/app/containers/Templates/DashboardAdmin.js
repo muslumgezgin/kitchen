@@ -10,7 +10,7 @@ import {
   openAction,
   playTransitionAction
 } from "dan-actions/UiActions";
-import UserLeftSidebarLayout from "./layouts/UserLeftSidebarLayout";
+import LeftSidebarBigLayout from "./layouts/LeftSidebarBigLayout";
 import styles from "./appStyles-jss";
 
 class Dashboard extends React.Component {
@@ -80,7 +80,7 @@ class Dashboard extends React.Component {
         )}
       >
         <GuideSlider openGuide={openGuide} closeGuide={this.handleCloseGuide} />
-        <UserLeftSidebarLayout
+        <LeftSidebarBigLayout
           history={history}
           toggleDrawer={toggleDrawer}
           loadTransition={loadTransition}
@@ -96,7 +96,7 @@ class Dashboard extends React.Component {
           handleOpenGuide={this.handleOpenGuide}
         >
           {children}
-        </UserLeftSidebarLayout>
+        </LeftSidebarBigLayout>
       </div>
     );
   }

@@ -22,6 +22,7 @@ class Auth extends React.Component {
         <Switch>
           <Route path="/login" component={LoginV2} />
           <Route path="/register" component={RegisterV2} />
+          <Route path="/reset-password" component={ResetPassword} />
           <Route component={NotFound} />
         </Switch>
       </Outer>

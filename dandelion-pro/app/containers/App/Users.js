@@ -77,6 +77,7 @@ import {
   ProductPage,
   Invoice,
   Profile,
+  UserDashboardPage,
   BlankPage,
   Photos,
   Pricing,
@@ -99,7 +100,7 @@ class Users extends React.Component {
       <Dashboard history={history} changeMode={changeMode}>
         <Switch>
           {/* Home */}
-          <Route exact path="/users/dashboard" component={BlankPage} />
+          <Route exact path="/users/dashboard" component={UserDashboardPage} />
           <Route path="/users/offers" component={BlankPage} />
           <Route path="/users/messages" component={Chat} />
           <Route path="/app/pages/blank-page" component={BlankPage} />

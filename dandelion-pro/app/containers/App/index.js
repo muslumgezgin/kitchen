@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <ThemeWrapper>
         <AppContext.Consumer>
-          {changeMode => (
+          {(changeMode) => (
             <Switch>
               <Route path="/" exact component={LandingCorporate} />
               <Route
@@ -26,20 +26,23 @@ class App extends React.Component {
               />
               <Route
                 path="/app"
-                render={props => (
-                  <Application {...props} changeMode={changeMode} />
-                )}
+                render={(props) => <Application {...props} changeMode={changeMode} />}
               />
               <Route
                 path="/blog"
-                render={props => (
+                render={(props) => (
                   <ArticleNews {...props} changeMode={changeMode} />
                 )}
               />
 
               <Route
                 path="/users"
-                render={props => <Users {...props} changeMode={changeMode} />}
+                render={(props) => <Users {...props} />}
+              />
+
+              <Route
+                path="/admin"
+                render={props => <Users {...props} />}
               />
 
               <Route component={Auth} />

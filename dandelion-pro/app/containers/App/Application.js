@@ -1,7 +1,7 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
-import Dashboard from '../Templates/Dashboard';
+import React from "react";
+import { PropTypes } from "prop-types";
+import { Switch, Route } from "react-router-dom";
+import Dashboard from "../Templates/DashboardAdmin";
 import {
   PersonalDashboard, CrmDashboard, CryptoDashboard,
   Infographics, MiniApps, Analytics,
@@ -31,7 +31,7 @@ import {
   Photos, Pricing, CheckoutPage, Error, Settings,
   HelpSupport, MapMarker, MapDirection, SearchMap,
   TrafficIndicator, StreetViewMap, NotFound
-} from '../pageListAsync';
+} from "../pageListAsync";
 
 class Application extends React.Component {
   render() {
