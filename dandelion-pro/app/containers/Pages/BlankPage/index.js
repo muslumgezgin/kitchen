@@ -17,8 +17,8 @@ class BlankPage extends React.Component {
           <meta property="twitter:title" content={title} />
           <meta property="twitter:description" content={description} />
         </Helmet>
-        <PapperBlock title="Blank Page" desc="Some text description">
-          Content
+        <PapperBlock title="" desc="">
+          {this.props.children}
         </PapperBlock>
       </div>
     );

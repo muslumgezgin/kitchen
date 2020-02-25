@@ -3,13 +3,19 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
-import { PapperBlock } from 'dan-components';
 import { Grid } from '@material-ui/core';
+import RectangleBlock from '../../../components/RectangleBlock/RectangleBlock';
+import BlankPage from '../BlankPage';
+
 
 class UserDashBoard extends React.Component {
     render() {
         const title = brand.name + ' - Blank Page';
         const description = brand.desc;
+        const datas = [
+            { number: 3, title: "Offerte", link: "Bekijken" },
+            { number: 5, title: "Berichten", link: "Bekijken" },
+            { number: 0, title: "BEOORDELING", link: "Bekijken" }];
         return (
             <div>
                 <Helmet>
@@ -20,31 +26,26 @@ class UserDashBoard extends React.Component {
                     <meta property="twitter:title" content={title} />
                     <meta property="twitter:description" content={description} />
                 </Helmet>
-                <PapperBlock title="Blank Page" desc="Some text description">
+                <BlankPage desc="Some text description">
                     <Grid container spacing={3}>
                         <Grid item xs={1} />
                         <Grid item xs={9}>
                             <Grid container spacing={9}>
-                                <Grid item xs={4}>
-                                    <PapperBlock title="Blank Page" desc="Some text description">
-                                        Content
-                                    </PapperBlock>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <PapperBlock title="Blank Page" desc="Some text description">
-                                        Content
-                                    </PapperBlock>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <PapperBlock title="Blank Page" desc="Some text description">
-                                        Content
-                                    </PapperBlock>
-                                </Grid>
+                                {datas.map((data, index) => {
+                                    return (
+                                        <Grid item xs={4} key={index}>
+                                            <RectangleBlock data={data}>
+                                                Content
+                                            </RectangleBlock>
+                                        </Grid>
+                                    )
+                                })}
+
                             </Grid>
                         </Grid>
                         <Grid item xs={1} />
                     </Grid>
-                </PapperBlock>
+                </BlankPage>
             </div>
         );
     }
