@@ -7,7 +7,6 @@ import { Grid } from '@material-ui/core';
 import RectangleBlock from '../../../components/RectangleBlock/RectangleBlock';
 import BlankPage from '../BlankPage';
 
-
 class UserDashBoard extends React.Component {
     render() {
         const title = brand.name + ' - Blank Page';
@@ -38,7 +37,7 @@ class UserDashBoard extends React.Component {
                                                 Content
                                             </RectangleBlock>
                                         </Grid>
-                                    )
+                                    );
                                 })}
 
                             </Grid>
