@@ -107,7 +107,7 @@ const styles = theme => ({
     },
   },
   gradientBg: {
-    backgroundImage: theme.palette.type === 'dark' ? gradientBgDark(theme) : gradientBgLight(theme),
+    backgroundColor:'#2196f3',
     backgroundAttachment: 'fixed'
   },
   solidBg: {

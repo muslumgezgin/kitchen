@@ -26,7 +26,7 @@ const ThemeThumb = props => {
       />
       <Tooltip title={name} placement="top">
         <div className={classes.appPreview}>
-          <div className={classes.decoration} style={{ backgroundImage: `linear-gradient(-45deg, ${themePalette[value].palette.primary.main} 0%, ${themePalette[value].palette.primary.main} 33%, ${themePalette[value].palette.secondary.main} 100%)` }} />
+          <div className={classes.decoration} style={{ backgroundColor: themePalette[value].palette.primary.light  }} />
           <ul>
             <li style={{ backgroundColor: themePalette[value].palette.primary.main }} />
             <li style={{ backgroundColor: themePalette[value].palette.secondary.main }} />

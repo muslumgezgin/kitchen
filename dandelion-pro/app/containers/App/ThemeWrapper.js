@@ -146,24 +146,6 @@ class ThemeWrapper extends React.Component {
               color="rgba(255,255,255,.9)"
               showSpinner={false}
             />
-            <TemplateSettings
-              palette={palette}
-              selectedValue={color}
-              mode={mode}
-              gradient={gradient}
-              decoration={decoration}
-              bgPosition={bgPosition}
-              layout={layout}
-              direction={direction}
-              changeTheme={this.handleChangeTheme}
-              changeRandomTheme={this.handleChangeRandomTheme}
-              changeMode={this.handleChangeMode}
-              changeGradient={this.handleChangeGradient}
-              changeDecoration={this.handleChangeDecoration}
-              changeBgPosition={this.handleChangeBgPosition}
-              changeLayout={this.handleChangeLayout}
-              changeDirection={this.handleChangeDirection}
-            />
             <AppContext.Provider value={this.handleChangeMode}>
               {children}
             </AppContext.Provider>

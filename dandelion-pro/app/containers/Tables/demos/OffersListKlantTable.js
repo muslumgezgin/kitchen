@@ -1,8 +1,22 @@
+/* eslint-disable quotes */
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable no-multiple-empty-lines */
+/* eslint-disable react/jsx-indent-props */
+/* eslint-disable indent */
+/* eslint-disable react/jsx-indent */
+
+
 import React from 'react';
-import { AdvTable } from 'dan-components';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Chip from '@material-ui/core/Chip';
+import MUIDataTable from 'mui-datatables';
+import css from 'dan-styles/Buttons.scss';
 import Button from '@material-ui/core/Button';
-import css from 'dan-styles/Buttons.scss'
+
 import { Link } from 'react-router-dom';
+
 
 let counter = 0;
 function createData(offertetype, datum, reacties, status, link) {
@@ -17,110 +31,140 @@ function createData(offertetype, datum, reacties, status, link) {
     };
 }
 
+
+
+
+
+
+
+
+
+
+const styles = theme => ({
+    table: {
+        '& > div': {
+            overflow: 'auto'
+        },
+        '& table': {
+            minWidth: 500,
+            [theme.breakpoints.down('md')]: {
+                '& td': {
+                    height: 40
+                }
+            }
+        }
+    }
+});
 const LinkBtn = React.forwardRef(function LinkBtn(props, ref) { // eslint-disable-line
     return <Link to={props.to} {...props} innerRef={ref} />; // eslint-disable-line
-  });
-
-function renderStatus(status) {
-    return (
-        <Button
-            variant="contained"
-            color=""
-            className={css.status+"Button"}
-        >
-           {status.toUpperCase()}
-  </Button>
-    )
-}
-
-
-
-function renderLink(link) {
-    return (
-        <Button
-            variant="contained"
-            color=""
-            className={css.seeButton}
-            component={LinkBtn}
-            to={link}
-        >
-            BEKIJKEN &nbsp; &#x279C;
-  </Button>
-    )
-}
-
-class OffersList extends React.Component {
+});
+/*
+  It uses npm mui-datatables. It's easy to use, you just describe columns and data collection.
+  Checkout full documentation here :
+  https://github.com/gregnb/mui-datatables/blob/master/README.md
+*/
+class AdvFilter extends React.Component {
     state = {
-        order: 'asc',
-        orderBy: 'calories',
-        selected: [],
-        columnData: [
+        columns: [
             {
-                id: 'offertetype',
-                numeric: false,
-                disablePadding: true,
-                label: 'Offertetype'
-            }, {
-                id: 'datum',
-                numeric: false,
-                disablePadding: false,
-                label: 'Datum'
-            }, {
-                id: 'reacties',
-                numeric: false,
-                disablePadding: false,
-                label: 'Reacties'
-            }, {
-                id: 'status',
-                numeric: false,
-                disablePadding: false,
-                label: 'Status'
-            }, {
-                id: 'link',
-                numeric: false,
-                disablePadding: false,
-                label: ''
+                name: 'Offerte type',
+                options: {
+                    filter: true
+                }
+            },
+            {
+                name: 'Datum',
+                options: {
+                    filter: true,
+                }
+            },
+            {
+                name: 'Reacties',
+                options: {
+                    filter: false,
+                    customBodyRender: (value) => (
+                        <LinearProgress variant="determinate" color="secondary" value={value[0]} />
+                    )
+                }
+            },
+            {
+                name: 'Status',
+                options: {
+                    filter: false,
+                    customBodyRender: (value) => this.renderStatus(value)
+                }
+            },
+            {
+                name: "",
+                options: {
+                    filter: false,
+                    customBodyRender: (value) => this.renderLink(value)
+                }
             },
         ],
         data: [
-            createData('Offerte vergelijking 1', "18-08-2019", "3 reacties", "active", "/users/dashboard"),
-            createData('Offerte aanvrag 1', "18-08-2019", "5 reacties", "concept", "/users/dashboard"),
-            createData('3d ontwerp 1', "18-08-2019", "0 reacties", "settle", "/users/dashboard")
-        ],
-        page: 0,
-        rowsPerPage: 5,
-        defaultPerPage: 5,
-        filterText: '',
-    };
+            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'active', "sfe"],
+            ['Offerte aanvraag 1', 'Business Consultant', [55, 2], 'concept', "fsdfs"],
+            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'settle', "fsfd"],
+        ]
+    }
+
+    renderLink(link) {
+        return (
+            <Button
+                variant="contained"
+                color=""
+                className={css.seeButton}
+            >
+                BEKIJKEN &nbsp; &#x279C;
+            </Button>
+        );
+    }
+
+
+    renderStatus(status) {
+        let name = status + 'Button';
+        return (
+            <Button
+                variant="contained"
+                color=""
+                className={css[name]}
+            >
+                {status.toUpperCase()}
+            </Button>
+        )
+    }
 
     render() {
-        const {
-            order,
-            orderBy,
-            selected,
-            data,
-            page,
-            rowsPerPage,
-            defaultPerPage,
-            filterText,
-            columnData
-        } = this.state;
-
+        const { columns, data } = this.state;
+        const { classes } = this.props;
+        const options = {
+            onRowsDelete:
+                (e) => {
+                    console.log(e);
+                    console.log("shfeu");
+                },
+            filterType: 'dropdown',
+            responsive: 'stacked',
+            print: true,
+            rowsPerPage: 10,
+            page: 0
+        };
         return (
-            <AdvTable
-                order={order}
-                orderBy={orderBy}
-                selected={selected}
-                data={data}
-                page={page}
-                rowsPerPage={rowsPerPage}
-                defaultPerPage={defaultPerPage}
-                filterText={filterText}
-                columnData={columnData}
-            />
+            <div>
+                <MUIDataTable
+                    title="Employee list"
+                    data={data}
+                    columns={columns}
+                    options={options}
+                />
+            </div>
         );
     }
 }
 
+AdvFilter.propTypes = {
+    classes: PropTypes.object.isRequired
+};
 
-export default OffersList;
+export default withStyles(styles)(AdvFilter);

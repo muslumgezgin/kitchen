@@ -3,15 +3,7 @@ import { PropTypes } from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "../Templates/DashboardUsers";
 import {
-  PersonalDashboard,
-  CrmDashboard,
-  CryptoDashboard,
-  Infographics,
-  MiniApps,
-  Analytics,
-  InfoUpdates,
   Status,
-  Parent,
   AppLayout,
   Responsive,
   Grid,
@@ -74,22 +66,11 @@ import {
   Ecommerce,
   Timeline,
   Calendar,
-  ProductPage,
-  Invoice,
-  Profile,
   UserDashboardPage,
+  UserOffersPage,
   BlankPage,
-  Photos,
-  Pricing,
-  CheckoutPage,
-  Error,
-  Settings,
-  HelpSupport,
-  MapMarker,
-  MapDirection,
   SearchMap,
   TrafficIndicator,
-  StreetViewMap,
   NotFound
 } from "../pageListAsync";
 
@@ -101,7 +82,7 @@ class Users extends React.Component {
         <Switch>
           {/* Home */}
           <Route exact path="/users/dashboard" component={UserDashboardPage} />
-          <Route path="/users/offers" component={BlankPage} />
+          <Route path="/users/offers" component={UserOffersPage} />
           <Route path="/users/messages" component={Chat} />
           <Route path="/app/pages/blank-page" component={BlankPage} />
 

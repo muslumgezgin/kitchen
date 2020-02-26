@@ -334,6 +334,11 @@ export const UserDashboardPage = loadable(() =>
   import('./Pages/UserDashboard'), {
   fallback: <Loading />,
 });
+
+export const UserOffersPage = loadable(() =>
+  import('./Pages/UserOffers'), {
+  fallback: <Loading />,
+});
 export const Pricing = loadable(() =>
   import('./Pages/Pricing'), {
   fallback: <Loading />,

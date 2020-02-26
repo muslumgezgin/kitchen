@@ -66,15 +66,15 @@ module.exports = {
   blueTheme: {
     palette: {
       primary: {
-        light: '#E8EAF6',
-        main: '#3F51B5',
-        dark: '#283593',
+        light: '#2196f3',
+        main: '#2196f3',
+        dark: '#2196f3',
         contrastText: '#fff',
       },
       secondary: {
-        light: '#E1F5FE',
-        main: '#03A9F4',
-        dark: '#0277BD',
+        light: '#2196f3',
+        main: '#2196f3',
+        dark: '#2196f3',
         contrastText: '#fff',
       },
     },
