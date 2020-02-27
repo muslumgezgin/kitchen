@@ -103,9 +103,9 @@ class AdvFilter extends React.Component {
             },
         ],
         data: [
-            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'active', "sfe"],
+            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'actief', "sfe"],
             ['Offerte aanvraag 1', 'Business Consultant', [55, 2], 'concept', "fsdfs"],
-            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'settle', "fsfd"],
+            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'afgehandeld', "fsfd"],
         ]
     }
 

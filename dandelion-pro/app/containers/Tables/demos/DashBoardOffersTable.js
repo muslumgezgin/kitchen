@@ -10,11 +10,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import styles from 'dan-components/Tables/tableStyle-jss';
 
-let id = 0;
-function createData(id, type, datum, reactions) {
-  id += 1;
+function createData(type, datum, reactions) {
   return {
-    id,
     type,
     datum,
     reactions
@@ -31,10 +28,10 @@ function DashBoardOffersTable(props) {
   return (
     <Fragment>
       <div className={classes.rootTable}>
-        <Table className={classNames(classes.table, classes.stripped)}>
+        <Table >
           <TableBody>
-            {data.map(n => ([
-              <TableRow key={n.id}>
+            {data.map((n,index) => ([
+              <TableRow key={n.index}>
                 <TableCell>{n.type}</TableCell>
                 <TableCell>{n.datum}</TableCell>
                 <TableCell>{n.reactions} reacties</TableCell>
