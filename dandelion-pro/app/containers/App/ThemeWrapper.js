@@ -146,10 +146,10 @@ class ThemeWrapper extends React.Component {
               color="rgba(255,255,255,.9)"
               showSpinner={false}
             />
-            <AppContext.Provider value={this.handleChangeMode}>
-              {children}
-            </AppContext.Provider>
-          </div>
+              <AppContext.Provider value={this.handleChangeMode}>
+                {children}
+              </AppContext.Provider>
+            </div>
         </MuiThemeProvider>
       </StylesProvider>
     );

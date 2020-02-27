@@ -6,7 +6,7 @@ import brand from 'dan-api/dummy/brand';
 import { Grid } from '@material-ui/core';
 import RectangleBlock from '../../../components/RectangleBlock/RectangleBlock';
 import BlankPage from '../BlankPage';
-
+import OffersList from '../../OffersList';
 class UserDashBoard extends React.Component {
     render() {
         const title = brand.name + ' - Blank Page';
@@ -29,7 +29,7 @@ class UserDashBoard extends React.Component {
                     <Grid container spacing={3}>
                         <Grid item xs={1} />
                         <Grid item xs={9}>
-                            <Grid container spacing={9}>
+                            <Grid container>
                                 {datas.map((data, index) => {
                                     return (
                                         <Grid item xs={4} key={index}>
@@ -44,6 +44,14 @@ class UserDashBoard extends React.Component {
                         </Grid>
                         <Grid item xs={1} />
                     </Grid>
+                    <Grid container spacing={3}>
+                    <Grid item xs={1} />
+                        <Grid  xs={9}>
+                            <OffersList />
+                        </Grid>
+                        <Grid item xs={1} />
+                    </Grid>
+
                 </BlankPage>
             </div>
         );

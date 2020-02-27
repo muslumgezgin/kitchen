@@ -1,0 +1,21 @@
+.componentOfferList{
+    width: 400px;
+    height: 305px;
+    border-radius: 20px;
+    border: solid 1px #0090e3;
+    float: right;
+  }
+  .listContent{
+    margin: {
+        left: 10%;
+        right: 10%;
+        top:50px;
+    };
+  
+    h2{
+        color: #0090e3;
+        line-height: 0.58;
+        font-weight: 600;
+        font-size: 24px;
+    }
+  }
