@@ -7,8 +7,7 @@ export default class index extends Component {
         return (
             <div className={css.componentOfferList}>
                 <div className={css.listContent}>
-                    <h2>Mijn Offers </h2>
-                    <DashBoardOffersTable/>
+                    <h2>Nieuwe berichten</h2>
                 </div>
             </div>
         )

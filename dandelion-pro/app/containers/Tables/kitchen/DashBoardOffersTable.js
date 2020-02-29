@@ -9,9 +9,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import styles from 'dan-components/Tables/tableStyle-jss';
+import css from './index.scss';
+
 
 let id = 0;
-function createData(id, type, datum, reactions) {
+function createData(type, datum, reactions) {
   id += 1;
   return {
     id,
@@ -22,22 +24,22 @@ function createData(id, type, datum, reactions) {
 }
 
 const data = [
-  createData('Modernkeuken 23', '18-08-201917:30 uur', 3),
-  createData('Modernkeuken 25', '18-08-201917:30 uur', 3),
+  createData('Modernkeuken 23', '18-08-2019', 3),
+  createData('Modernkeuken 25', '18-08-2019', 3),
 ];
 
 function DashBoardOffersTable(props) {
   const { classes } = props;
   return (
     <Fragment>
-      <div className={classes.rootTable}>
-        <Table className={classNames(classes.table, classes.stripped)}>
+      <div className={css.tableComponent}>
+        <Table className={classNames(classes.stripped)}>
           <TableBody>
             {data.map(n => ([
               <TableRow key={n.id}>
-                <TableCell>{n.type}</TableCell>
-                <TableCell>{n.datum}</TableCell>
-                <TableCell>{n.reactions} reacties</TableCell>
+                <TableCell className={css.typeCell}>{n.type}</TableCell>
+                <TableCell className="dateCell">{n.datum}</TableCell>
+                <TableCell className={css.reactionCell}>{n.reactions + ' reacties'}</TableCell>
               </TableRow>
             ]))}
           </TableBody>

@@ -1,0 +1,28 @@
+.typeCell {
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+}
+
+.reactionCell {
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ff6600;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.tableComponent {
+  width: 98%;
+}

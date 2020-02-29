@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { Grid } from '@material-ui/core';
 import BlankPage from '../BlankPage';
-import OffersListKlantTable from '../../Tables/demos/OffersListKlantTable';
+import OffersListKlantTable from '../../Tables/kitchen/OffersListKlantTable';
 class UserOffers extends React.Component {
     render() {
         const title = brand.name + ' - Blank Page';

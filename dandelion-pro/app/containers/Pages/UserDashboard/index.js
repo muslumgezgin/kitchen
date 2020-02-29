@@ -45,9 +45,15 @@ class UserDashBoard extends React.Component {
                         <Grid item xs={1} />
                     </Grid>
                     <Grid container spacing={3}>
-                    <Grid item xs={1} />
-                        <Grid  xs={9}>
-                            <OffersList />
+                        <Grid item xs={1} />
+                        <Grid xs={9}>
+                            <Grid container>
+                                <Grid item xs={7} />
+                                <Grid item xs={5} >
+                                    <OffersList />
+                                </Grid>
+                            </Grid>
+
                         </Grid>
                         <Grid item xs={1} />
                     </Grid>
