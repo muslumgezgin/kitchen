@@ -28,7 +28,7 @@ class CompaniesDashBoard extends React.Component {
         function createUserData(type, datum, reactions) {
             id2 += 1;
             return {
-                id,
+                id2,
                 type,
                 datum,
                 reactions
@@ -41,15 +41,15 @@ class CompaniesDashBoard extends React.Component {
         ];
 
         const MessagesData = [
-            createData(false, 'Klant A.Brouwer - Offerte 2019 ', "Tot ziens.."),
-            createData(false, 'Klant A.Brouwer - Offerte 2019 ', "is aan het typen"),
-            createData(false, 'Klant A.Brouwer - Offerte 2019 ', "is aan het typen")
+            createData(false, 'Klant A.Brouwer - Offerte 2019 ', 'Tot ziens..'),
+            createData(false, 'Klant A.Brouwer - Offerte 2019 ', 'is aan het typen'),
+            createData(false, 'Klant A.Brouwer - Offerte 2019 ', 'is aan het typen')
         ];
 
         const datas = [
-            { number: 22, title: "Nieuwe offertes", link: "Bekijken" },
-            { number: 12, title: "Mijn offertes", link: "Bekijken" },
-            { number: 4, title: "Afspraken", link: "Bekijken" }];
+            { number: 22, title: 'Nieuwe offertes', link: 'Bekijken' },
+            { number: 12, title: 'Mijn offertes', link: 'Bekijken' },
+            { number: 4, title: 'Afspraken', link: 'Bekijken' }];
         return (
             <div>
                 <Helmet>
@@ -65,15 +65,14 @@ class CompaniesDashBoard extends React.Component {
                         <Grid item xs={1} />
                         <Grid item xs={9}>
                             <Grid container>
-                                {datas.map((data, index) => {
-                                    return (
+                                {datas.map((data, index) => (
+                                        // eslint-disable-next-line react/no-array-index-key
                                         <Grid item xs={4} key={index}>
                                             <RectangleBlock data={data}>
                                                 Content
                                             </RectangleBlock>
                                         </Grid>
-                                    );
-                                })}
+                                    ))}
 
                             </Grid>
                         </Grid>
@@ -84,11 +83,11 @@ class CompaniesDashBoard extends React.Component {
                         <Grid xs={9}>
                             <Grid container>
                                 <Grid item xs={1} />
-                                <Grid item xs={5} >
+                                <Grid item xs={5}>
                                     <MessagesList data={MessagesData} />
                                 </Grid>
                                 <Grid item xs={1} />
-                                <Grid item xs={5} >
+                                <Grid item xs={5}>
                                     <OffersList data={UserData} />
                                 </Grid>
                             </Grid>

@@ -1,27 +1,34 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable indent */
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
-import { Grid } from '@material-ui/core';
-import BlankPage from '../BlankPage';
-import OffersListKlantTable from '../../Tables/kitchen/OffersListKlantTable';
-import CompanyNiewOffersTable from '../../Tables/kitchen/CompanyNiewOffersTable';
+import { Grid, Tabs, Tab } from '@material-ui/core';
 
 import css from 'dan-styles/TableHeader.scss';
 
+import BlankPage from '../BlankPage';
+import CompanyNiewOffersTable from '../../Tables/kitchen/CompanyNiewOffersTable';
+import CompanyArrangedTable from '../../Tables/kitchen/CompanyArrangedTable';
+import CompanyFinishedTable from '../../Tables/kitchen/CompanyFinishedTable';
+import CompanyOffersTable from '../../Tables/kitchen/CompanyOffersTable';
+
+
 class CompaniesOffers extends React.Component {
     state = {
-        status: 'new'
+        value: 0
     }
+
+    handleChange = (event, value) => {
+        this.setState({ value });
+    };
+
     render() {
         const title = brand.name + ' - Blank Page';
-        const { status } = this.state;
+        const { value } = this.state;
         const description = brand.desc;
-        const datas = [
-            { number: 3, title: "Offerte", link: "Bekijken" },
-            { number: 5, title: "Berichten", link: "Bekijken" },
-            { number: 0, title: "BEOORDELING", link: "Bekijken" }];
         return (
             <div>
                 <Helmet>
@@ -33,26 +40,26 @@ class CompaniesOffers extends React.Component {
                     <meta property="twitter:description" content={description} />
                 </Helmet>
                 <BlankPage desc="Some text description">
-                    <Grid className={css.headerComponent} container spacing={1}>
-                        <Grid item xs={1}>
-                            <span onClick={() => { this.setState({ status: "new" }) }}>Nieuw</span>
-                        </Grid>
-                        <Grid item xs={1}>
-                            <span onClick={() => { this.setState({ status: "myOffers" }) }}>MIJN OFFERTES</span>
-                        </Grid>
-                        <Grid item xs={1}>
-                            <span onClick={() => { this.setState({ status: "arranged" }) }}>GEREAGEERD</span>
-                        </Grid>
-                        <Grid item xs={1}>
-                            <span onClick={() => { this.setState({ status: "handled" }) }} >AFGEHANDELD</span>
-                        </Grid>
-                    </Grid>
+                    <Tabs value={value} onChange={this.handleChange}>
+                        <Tab label="NIEUW" />
+                        <Tab label="MIJN OFFERTES" />
+                        <Tab label="GEREAGEERD" />
+                        <Tab label="AFGEHANDELD" />
+                    </Tabs>
+
                     <hr />
                     {
-                        status === 'new' && <CompanyNiewOffersTable />
+                        value === 0 && <CompanyNiewOffersTable />
                     }
                     {
-                        status === 'myOffers' && <OffersListKlantTable />
+                        value === 1 && <CompanyArrangedTable />
+                    }
+                    {
+                        value === 2 && <CompanyOffersTable />
+                    }
+
+                    {
+                        value === 3 && <CompanyFinishedTable />
                     }
                 </BlankPage>
             </div>

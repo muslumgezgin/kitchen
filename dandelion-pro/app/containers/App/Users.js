@@ -1,80 +1,17 @@
-import React from "react";
-import { PropTypes } from "prop-types";
-import { Switch, Route } from "react-router-dom";
-import Dashboard from "../Templates/DashboardUsers";
-import dataMenu from "dan-api/ui/userMenu";
+import React from 'react';
+import { PropTypes } from 'prop-types';
+import { Switch, Route } from 'react-router-dom';
+import dataMenu from 'dan-api/ui/userMenu';
+import Dashboard from '../Templates/DashboardUsers';
 
 import {
-  Status,
-  AppLayout,
-  Responsive,
-  Grid,
-  SimpleTable,
-  AdvancedTable,
-  TablePlayground,
-  TreeTable,
-  EditableCell,
-  ReduxForm,
-  DateTimePicker,
-  CheckboxRadio,
-  Switches,
-  Selectbox,
-  Rating,
-  SliderRange,
-  Buttons,
-  DialButton,
-  ToggleButton,
-  Textbox,
-  Autocomplete,
-  Upload,
-  TextEditor,
-  Avatars,
-  Accordion,
-  Badges,
-  List,
-  PopoverTooltip,
-  Snackbar,
-  Typography,
-  Tabs,
-  Cards,
-  ImageGrid,
-  Progress,
-  DialogModal,
-  Steppers,
-  Paginations,
-  DrawerMenu,
-  Breadcrumbs,
-  Icons,
-  IonIcons,
-  SliderCarousel,
-  Tags,
-  Dividers,
-  LineCharts,
-  BarCharts,
-  AreaCharts,
-  PieCharts,
-  RadarCharts,
-  ScatterCharts,
-  CompossedCharts,
-  DoughnutCharts,
-  BarDirection,
-  LineScatterChart,
-  AreaFilledChart,
-  RadarPolarCharts,
-  Contact,
   Chat,
-  Email,
-  TaskBoard,
-  Ecommerce,
-  Timeline,
-  Calendar,
   UserDashboardPage,
   UserOffersPage,
   BlankPage,
-  SearchMap,
-  TrafficIndicator,
-  NotFound
-} from "../pageListAsync";
+  NotFound,
+  UserNewOfferPage
+} from '../pageListAsync';
 
 class Users extends React.Component {
   render() {
@@ -86,6 +23,7 @@ class Users extends React.Component {
           <Route exact path="/users/dashboard" component={UserDashboardPage} />
           <Route path="/users/offers" component={UserOffersPage} />
           <Route path="/users/messages" component={Chat} />
+          <Route path="/users/newOffer" component={UserNewOfferPage} />
           <Route path="/app/pages/blank-page" component={BlankPage} />
 
           {/* Default */}

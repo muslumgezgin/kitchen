@@ -335,6 +335,11 @@ export const UserDashboardPage = loadable(() =>
   fallback: <Loading />,
 });
 
+export const UserNewOfferPage = loadable(() =>
+  import('./Pages/UserNewOffer'), {
+  fallback: <Loading />,
+});
+
 export const CompaniesDashBoardPage = loadable(() =>
   import('./Pages/CompaniesDashBoard'), {
   fallback: <Loading />,

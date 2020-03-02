@@ -28,14 +28,14 @@ class BlankPage extends React.Component {
           <meta property="twitter:description" content={description} />
         </Helmet>
         <Button
-              variant="contained"
-              color=""
-              className={css.buttonLink}
-              component={LinkBtn}
-              to="/app/forms/date-time-picker"
-            >
-              NIEUW OFFERTE &nbsp; &#x279C;
-          </Button>
+          variant="contained"
+          color=""
+          className={css.buttonLink}
+          component={LinkBtn}
+          to={this.props.link ? this.props.link : '/'}
+        >
+          NIEUW OFFERTE &nbsp; &#x279C;
+        </Button>
         <PapperBlock title="" desc="">
           <div className={css.childrenComponent}>
             {this.props.children}

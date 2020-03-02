@@ -9,7 +9,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import MUIDataTable from 'mui-datatables';
 import css from 'dan-styles/Buttons.scss';
 import Button from '@material-ui/core/Button';
@@ -46,7 +45,7 @@ class AdvFilter extends React.Component {
     state = {
         columns: [
             {
-                name: 'Offerte type',
+                name: 'Offerte tyoe',
                 options: {
                     filter: true
                 }
@@ -58,19 +57,24 @@ class AdvFilter extends React.Component {
                 }
             },
             {
+                name: 'Plaats',
+                options: {
+                    filter: true,
+                }
+            },
+            {
+                name: 'Waarde',
+                options: {
+                    filter: true,
+                }
+            },
+            {
                 name: 'Reacties',
                 options: {
                     filter: false,
                     customBodyRender: (value) => (
-                        <LinearProgress variant="determinate" color="secondary" value={value[0]} />
+                        <Link to="/"><div>{value === 0 ? "Nog geen reacties" : value + ' reacties'}</div></Link>
                     )
-                }
-            },
-            {
-                name: 'Status',
-                options: {
-                    filter: false,
-                    customBodyRender: (value) => this.renderStatus(value)
                 }
             },
             {
@@ -82,12 +86,13 @@ class AdvFilter extends React.Component {
             },
         ],
         data: [
-            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'actief', "sfe"],
-            ['Offerte aanvraag 1', 'Business Consultant', [55, 2], 'concept', "fsdfs"],
-            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'afgehandeld', "fsfd"],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Rotterdam, NL', "€ 12.500'", 0, "sfe"],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam, NL', "€ 11.500'", 3, "sfe"],
+
         ]
     }
 
+    // eslint-disable-next-line class-methods-use-this
     renderLink(link) {
         return (
             <Button
@@ -98,20 +103,6 @@ class AdvFilter extends React.Component {
                 BEKIJKEN &nbsp; &#x279C;
             </Button>
         );
-    }
-
-
-    renderStatus(status) {
-        let name = status + 'Button';
-        return (
-            <Button
-                variant="contained"
-                color=""
-                className={css[name]}
-            >
-                {status.toUpperCase()}
-            </Button>
-        )
     }
 
     render() {
