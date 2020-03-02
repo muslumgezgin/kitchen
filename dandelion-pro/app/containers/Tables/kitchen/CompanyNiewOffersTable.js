@@ -9,38 +9,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Chip from '@material-ui/core/Chip';
 import MUIDataTable from 'mui-datatables';
-import css from 'dan-styles/Buttons.scss';
-import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+
 import css2 from './index.scss';
 
-import { Link } from 'react-router-dom';
 import pdfImage from './images/pdf.svg';
 import idealImage from './images/ideal.svg';
-
-
-let counter = 0;
-function createData(offertetype, datum, reacties, status, link) {
-    counter += 1;
-    return {
-        id: counter,
-        offertetype,
-        datum,
-        reacties,
-        status: renderStatus(status),
-        link
-    };
-}
-
-
-
-
-
-
-
-
 
 
 const styles = theme => ({
