@@ -335,8 +335,18 @@ export const UserDashboardPage = loadable(() =>
   fallback: <Loading />,
 });
 
+export const CompaniesDashBoardPage = loadable(() =>
+  import('./Pages/CompaniesDashBoard'), {
+  fallback: <Loading />,
+});
+
 export const UserOffersPage = loadable(() =>
   import('./Pages/UserOffers'), {
+  fallback: <Loading />,
+});
+
+export const CompaniesOffersPage = loadable(() =>
+  import('./Pages/CompaniesOffers'), {
   fallback: <Loading />,
 });
 export const Pricing = loadable(() =>

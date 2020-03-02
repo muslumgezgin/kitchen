@@ -12,24 +12,10 @@ import styles from 'dan-components/Tables/tableStyle-jss';
 import css from './index.scss';
 
 
-let id = 0;
-function createData(type, datum, reactions) {
-  id += 1;
-  return {
-    id,
-    type,
-    datum,
-    reactions
-  };
-}
 
-const data = [
-  createData('Modernkeuken 23', '18-08-2019', 3),
-  createData('Modernkeuken 25', '18-08-2019', 3),
-];
 
 function DashBoardOffersTable(props) {
-  const { classes } = props;
+  const { classes, data } = props;
   return (
     <Fragment>
       <div className={css.tableComponent}>

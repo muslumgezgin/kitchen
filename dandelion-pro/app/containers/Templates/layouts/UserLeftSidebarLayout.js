@@ -5,7 +5,6 @@ import Fade from "@material-ui/core/Fade";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import { Header, Sidebar, BreadCrumb } from "dan-components";
-import dataMenu from "dan-api/ui/userMenu";
 import Decoration from "../Decoration";
 import styles from "../appStyles-jss";
 
@@ -26,7 +25,8 @@ class LeftSidebarLayout extends React.Component {
       changeMode,
       place,
       titleException,
-      handleOpenGuide
+      handleOpenGuide,
+      dataMenu
     } = this.props;
     return (
       <Fragment>

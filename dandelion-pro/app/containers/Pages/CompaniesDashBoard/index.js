@@ -7,33 +7,49 @@ import { Grid } from '@material-ui/core';
 import RectangleBlock from '../../../components/RectangleBlock/RectangleBlock';
 import BlankPage from '../BlankPage';
 import OffersList from '../../OffersList';
-import MessagesList from '../../MessagesList'
-class UserDashBoard extends React.Component {
+import MessagesList from '../../MessagesList';
+
+class CompaniesDashBoard extends React.Component {
     render() {
         const title = brand.name + ' - Blank Page';
         const description = brand.desc;
+        let id = 0;
+        function createData(logo, name, status) {
+            id += 1;
+            return {
+                id,
+                logo,
+                name,
+                status
+            };
+        }
+
+        let id2 = 0;
+        function createUserData(type, datum, reactions) {
+            id2 += 1;
+            return {
+                id,
+                type,
+                datum,
+                reactions
+            };
+        }
+
+        const UserData = [
+            createUserData('Modernkeuken 23', '18-08-2019', 3),
+            createUserData('Modernkeuken 25', '18-08-2019', 3),
+        ];
+
+        const MessagesData = [
+            createData(false, 'Klant A.Brouwer - Offerte 2019 ', "Tot ziens.."),
+            createData(false, 'Klant A.Brouwer - Offerte 2019 ', "is aan het typen"),
+            createData(false, 'Klant A.Brouwer - Offerte 2019 ', "is aan het typen")
+        ];
+
         const datas = [
-            { number: 3, title: "Offerte", link: "Bekijken" },
-            { number: 5, title: "Berichten", link: "Bekijken" },
-            { number: 0, title: "BEOORDELING", link: "Bekijken" }];
-
-
-            let id=0;
-            function createData(logo, name, status) {
-                id += 1;
-                return {
-                    id,
-                    logo,
-                    name,
-                    status
-                };
-            }
-            
-            const messagesData = [
-                createData('logo', 'Keukenconcurrent', "Tot ziens.."),
-                createData('logo', 'Superkeukens', "is aan het typen"),
-                createData('logo', 'Superkeukens', "is aan het typen")
-            ];
+            { number: 22, title: "Nieuwe offertes", link: "Bekijken" },
+            { number: 12, title: "Mijn offertes", link: "Bekijken" },
+            { number: 4, title: "Afspraken", link: "Bekijken" }];
         return (
             <div>
                 <Helmet>
@@ -69,11 +85,11 @@ class UserDashBoard extends React.Component {
                             <Grid container>
                                 <Grid item xs={1} />
                                 <Grid item xs={5} >
-                                    <MessagesList data={messagesData}/>
+                                    <MessagesList data={MessagesData} />
                                 </Grid>
                                 <Grid item xs={1} />
                                 <Grid item xs={5} >
-                                    <OffersList />
+                                    <OffersList data={UserData} />
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -85,4 +101,4 @@ class UserDashBoard extends React.Component {
     }
 }
 
-export default UserDashBoard;
+export default CompaniesDashBoard;

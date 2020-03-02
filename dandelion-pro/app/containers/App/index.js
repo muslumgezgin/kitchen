@@ -7,6 +7,7 @@ import LandingCorporate from './Landing';
 import LandingCreative from './LandingCreative';
 import ArticleNews from './ArticleNews';
 import Users from './Users';
+import Companies from './Companies';
 
 import ThemeWrapper, { AppContext } from './ThemeWrapper';
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
@@ -43,6 +44,11 @@ class App extends React.Component {
               <Route
                 path="/admin"
                 render={props => <Users {...props} />}
+              />
+
+              <Route
+                path="/companies"
+                render={props => <Companies {...props} />}
               />
 
               <Route component={Auth} />

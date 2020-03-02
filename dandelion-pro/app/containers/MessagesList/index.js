@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import css from './index.scss';
-import DashBoardOffersTable from '../../containers/Tables/kitchen/DashBoardOffersTable';
+import MessagesList from '../Tables/kitchen/MessagesList';
 
 export default class index extends Component {
     render() {
         return (
-            <div className={css.componentOfferList}>
+            <div className={css.componentMessagesList}>
                 <div className={css.listContent}>
-                    <h2>Mijn Offers </h2>
-                    <DashBoardOffersTable data={this.props.data}/>
+                    <h2>Nieuwe berichten </h2>
+                    <MessagesList data={this.props.data}/>
                 </div>
             </div>
         )

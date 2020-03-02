@@ -2,7 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "../Templates/DashboardUsers";
-import dataMenu from "dan-api/ui/userMenu";
+import dataMenu from "dan-api/ui/companyMenu";
 
 import {
   Status,
@@ -69,23 +69,24 @@ import {
   Timeline,
   Calendar,
   UserDashboardPage,
-  UserOffersPage,
+  CompaniesDashBoardPage,
+  CompaniesOffersPage,
   BlankPage,
   SearchMap,
   TrafficIndicator,
   NotFound
 } from "../pageListAsync";
 
-class Users extends React.Component {
+class Companies extends React.Component {
   render() {
     const { changeMode, history } = this.props;
     return (
       <Dashboard history={history} changeMode={changeMode} dataMenu={dataMenu}>
         <Switch>
           {/* Home */}
-          <Route exact path="/users/dashboard" component={UserDashboardPage} />
-          <Route path="/users/offers" component={UserOffersPage} />
-          <Route path="/users/messages" component={Chat} />
+          <Route exact path="/companies/dashboard" component={CompaniesDashBoardPage} />
+          <Route path="/companies/offers" component={CompaniesOffersPage} />
+          <Route path="/companies/messages" component={Chat} />
           <Route path="/app/pages/blank-page" component={BlankPage} />
 
           {/* Default */}
@@ -96,9 +97,9 @@ class Users extends React.Component {
   }
 }
 
-Users.propTypes = {
+Companies.propTypes = {
   changeMode: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };
 
-export default Users;
+export default Companies;

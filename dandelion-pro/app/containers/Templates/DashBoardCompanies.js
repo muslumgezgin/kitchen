@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { GuideSlider } from "dan-components";
-
+import dataMenu from "dan-api/ui/userMenu";
 import {
   toggleAction,
   openAction,
@@ -60,8 +60,7 @@ class Dashboard extends React.Component {
       deco,
       bgPosition,
       layout,
-      changeMode,
-      dataMenu
+      changeMode
     } = this.props;
     const { openGuide } = this.state;
     const titleException = [

@@ -17,6 +17,8 @@ import Button from '@material-ui/core/Button';
 import css2 from './index.scss';
 
 import { Link } from 'react-router-dom';
+import pdfImage from './images/pdf.svg';
+import idealImage from './images/ideal.svg';
 
 
 let counter = 0;
@@ -80,59 +82,66 @@ class AdvFilter extends React.Component {
                 }
             },
             {
-                name: 'Reacties',
+                name: 'Plaats',
+                options: {
+                    filter: true,
+                }
+            },
+            {
+                name: 'Waarde',
+                options: {
+                    filter: true,
+                }
+            },
+            {
+                name: 'Bijlage',
                 options: {
                     filter: false,
                     customBodyRender: (value) => (
-                        <LinearProgress variant="determinate" color="secondary" value={value[0]} />
+                        <Link to="">
+                            <img src={pdfImage} alt="pdf" />
+                        </Link>
                     )
                 }
             },
             {
-                name: 'Status',
+                name: 'Kopen',
                 options: {
                     filter: false,
-                    customBodyRender: (value) => this.renderStatus(value)
-                }
-            },
-            {
-                name: "",
-                options: {
-                    filter: false,
-                    customBodyRender: (value) => this.renderLink(value)
+                    customBodyRender: (value) => this.renderBuy(value)
                 }
             },
         ],
         data: [
-            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'actief', "sfe"],
-            ['Offerte aanvraag 1', 'Business Consultant', [55, 2], 'concept', "fsdfs"],
-            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'afgehandeld', "fsfd"],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 49],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam', '€ 12.500', "pdf", 50]
         ]
     }
 
-    renderLink(link) {
-        return (
-            <Button
-                variant="contained"
-                color=""
-                className={css.seeButton}
-            >
-                BEKIJKEN &nbsp; &#x279C;
-            </Button>
-        );
-    }
 
-
-    renderStatus(status) {
-        let name = status + 'Button';
+    renderBuy(value) {
+        let name = '€' + value + ',-';
         return (
-            <Button
-                variant="contained"
-                color=""
-                className={css[name]}
+            <div
+                className={css2.buyButton}
             >
-                {status.toUpperCase()}
-            </Button>
+                <span>{name}</span> &nbsp;
+                <img src={idealImage} alt="" />
+            </div>
         )
     }
 
