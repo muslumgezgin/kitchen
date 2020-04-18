@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import css from './index.scss';
-import MessagesList from '../Tables/kitchen/MessagesList';
+import MessagesList from '../../containers/Tables/kitchen/MessagesList';
 
 export default class index extends Component {
     render() {

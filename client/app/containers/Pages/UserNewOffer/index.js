@@ -8,10 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import css2 from 'dan-styles/Buttons.scss';
 import css from './index.scss';
 
-import RectangleBlock from '../../../components/RectangleBlock/RectangleBlock';
 import BlankPage from '../BlankPage';
-import OffersList from '../../OffersList';
-import MessagesList from '../../MessagesList';
 import GetPersonalInfo from './GetPersonalInfo';
 
 class UserNewOffer extends React.Component {

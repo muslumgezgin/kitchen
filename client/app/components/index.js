@@ -1,3 +1,4 @@
+
 // Main Components
 export Header from './Header/Header';
 export HeaderMenu from './Header/HeaderMenu';
@@ -145,3 +146,10 @@ export AddBoard from './TaskBoard/AddBoard';
 export ErrorWrap from './Error/ErrorWrap';
 // Theme an Layout Settings
 export TemplateSettings from './TemplateSettings';
+
+
+// our components
+
+export RectangleBlock from './RectangleBlock/RectangleBlock';
+export OffersList from './OffersList/index';
+export MessagesList from './MessagesList/index';

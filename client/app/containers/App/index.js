@@ -10,6 +10,7 @@ import Users from './Users';
 import Companies from './Companies';
 
 import ThemeWrapper, { AppContext } from './ThemeWrapper';
+import Admin from './Admin';
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 class App extends React.Component {
@@ -38,12 +39,12 @@ class App extends React.Component {
 
               <Route
                 path="/users"
-                render={(props) => <Users {...props} />}
+                render={(props) => <Users {...props} changeMode={changeMode} />}
               />
 
               <Route
                 path="/admin"
-                render={props => <Users {...props} />}
+                render={props => <Admin {...props} changeMode={changeMode} />}
               />
 
               <Route
