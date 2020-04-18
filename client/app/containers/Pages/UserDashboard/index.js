@@ -4,10 +4,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { Grid } from '@material-ui/core';
-import RectangleBlock from '../../../components/RectangleBlock/RectangleBlock';
+import { RectangleBlock } from 'dan-components';
 import BlankPage from '../BlankPage';
 import OffersList from '../../OffersList';
 import MessagesList from '../../MessagesList';
+
 class UserDashBoard extends React.Component {
     render() {
         const title = brand.name + ' - Blank Page';
