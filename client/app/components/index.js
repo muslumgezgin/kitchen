@@ -151,3 +151,5 @@ export TemplateSettings from './TemplateSettings';
 // our components
 
 export RectangleBlock from './RectangleBlock/RectangleBlock';
+export OffersList from './OffersList/index';
+export MessagesList from './MessagesList/index';

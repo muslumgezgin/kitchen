@@ -39,12 +39,12 @@ class App extends React.Component {
 
               <Route
                 path="/users"
-                render={(props) => <Users {...props} />}
+                render={(props) => <Users {...props} changeMode={changeMode} />}
               />
 
               <Route
                 path="/admin"
-                render={props => <Admin {...props} />}
+                render={props => <Admin {...props} changeMode={changeMode} />}
               />
 
               <Route
