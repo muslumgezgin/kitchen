@@ -61,7 +61,7 @@ const styles = theme => ({
       display: 'inline-block',
       position: 'relative',
       top: -15,
-      fontSize: 14,
+      fontSize: 20,
       padding: '0 1.25em',
       background: theme.palette.background.paper
     }

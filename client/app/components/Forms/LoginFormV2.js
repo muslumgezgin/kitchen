@@ -13,17 +13,23 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import AllInclusive from "@material-ui/icons/AllInclusive";
-import Brightness5 from "@material-ui/icons/Brightness5";
-import People from "@material-ui/icons/People";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 import Paper from "@material-ui/core/Paper";
 import Icon from "@material-ui/core/Icon";
-import brand from "dan-api/dummy/brand";
-import logo from "dan-images/logo.svg";
+import styled from "styled-components";
+import gIcon from "../../../public/images/icon/g_search.svg";
+import facebook from "../../../public/images/icon/facebook.svg";
 import styles from "./user-jss";
 import { TextFieldRedux, CheckboxRedux } from "./ReduxFormMUI";
 import { ContentDivider } from "../Divider";
+
+// style
+const LoginIcon = styled.img`
+  width: 33.7px;
+  height: 33.7px;
+  margin-left: 16px;
+  object-fit: contain;
+`;
 
 // validation functions
 const required = value => (value == null ? "Required" : undefined);
@@ -58,10 +64,9 @@ class LoginFormV2 extends React.Component {
     return (
       <Paper className={classNames(classes.sideWrap, deco && classes.petal)}>
         <div className={classes.topBar}>
-          <NavLink to="/" className={classes.brand}>
-            <img src={logo} alt={brand.name} />
-            {brand.name}
-          </NavLink>
+          <Typography variant="h4" className={classes.title} gutterBottom>
+            Meld je aan
+          </Typography>
           <Button
             size="small"
             className={classes.buttonLink}
@@ -72,54 +77,26 @@ class LoginFormV2 extends React.Component {
             Create new account
           </Button>
         </div>
-        <Typography variant="h4" className={classes.title} gutterBottom>
-          Sign In
-        </Typography>
-        <Typography
-          variant="caption"
-          className={classes.subtitle}
-          gutterBottom
-          align="center"
-        >
-          Lorem ipsum dolor sit amet
-        </Typography>
         <section className={classes.socmedSideLogin}>
           <div className={classes.btnArea}>
             <Button
-              variant="outlined"
-              size="small"
-              className={classes.redBtn}
-              type="button"
+              variant="contained"
+              className={classes.button}
+              id='facebook'
+              startIcon={<LoginIcon src={facebook} alt="" />}
             >
-              <AllInclusive
-                className={classNames(classes.leftIcon, classes.iconSmall)}
-              />
-              Socmed 1
+              INLOGGEN MET FACEBOOK
             </Button>
             <Button
-              variant="outlined"
-              size="small"
-              className={classes.blueBtn}
-              type="button"
+              id='gLogin'
+              variant="contained"
+              className={classes.button}
+              startIcon={<LoginIcon src={gIcon} alt="" />}
             >
-              <Brightness5
-                className={classNames(classes.leftIcon, classes.iconSmall)}
-              />
-              Socmed 2
-            </Button>
-            <Button
-              variant="outlined"
-              size="small"
-              className={classes.cyanBtn}
-              type="button"
-            >
-              <People
-                className={classNames(classes.leftIcon, classes.iconSmall)}
-              />
-              Socmed 3
+              INLOGGEN MET GMAIL
             </Button>
           </div>
-          <ContentDivider content="Or sign in with email" />
+          <ContentDivider content="of met een e-mail" />
         </section>
         <section className={classes.pageFormSideWrap}>
           <form onSubmit={handleSubmit}>
@@ -128,8 +105,8 @@ class LoginFormV2 extends React.Component {
                 <Field
                   name="email"
                   component={TextFieldRedux}
-                  placeholder="Your Email"
-                  label="Your Email"
+                  placeholder="E-mail adres"
+                  label="E-mail adres"
                   required
                   validate={[required, email]}
                   className={classes.field}
@@ -142,7 +119,7 @@ class LoginFormV2 extends React.Component {
                   name="password"
                   component={TextFieldRedux}
                   type={showPassword ? "text" : "password"}
-                  label="Your Password"
+                  label="Wachtwoord"
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -166,7 +143,7 @@ class LoginFormV2 extends React.Component {
               <FormControlLabel
                 className={classes.label}
                 control={<Field name="checkbox" component={CheckboxRedux} />}
-                label="Remember"
+                label="Opslaan"
               />
               <Button
                 size="small"
@@ -174,18 +151,18 @@ class LoginFormV2 extends React.Component {
                 to="/reset-password"
                 className={classes.buttonLink}
               >
-                Forgot Password
+                Wachtwoord vergeten
               </Button>
             </div>
             <div className={classes.btnArea}>
               <Button
+                id='continue'
                 variant="contained"
                 fullWidth
-                color="primary"
                 size="large"
                 type="submit"
               >
-                Continue
+                Aanmelden
                 <ArrowForward
                   className={classNames(classes.rightIcon, classes.iconSmall)}
                   disabled={submitting || pristine}
