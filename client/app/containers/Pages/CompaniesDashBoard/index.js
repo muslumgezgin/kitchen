@@ -3,11 +3,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
+import { OffersList, MessagesList } from 'dan-components';
 import { Grid } from '@material-ui/core';
-import RectangleBlock from '../../../components/RectangleBlock/RectangleBlock';
+import { RectangleBlock } from 'dan-components';
 import BlankPage from '../BlankPage';
-import OffersList from '../../OffersList';
-import MessagesList from '../../MessagesList';
+
 
 class CompaniesDashBoard extends React.Component {
     render() {
@@ -66,13 +66,13 @@ class CompaniesDashBoard extends React.Component {
                         <Grid item xs={9}>
                             <Grid container>
                                 {datas.map((data, index) => (
-                                        // eslint-disable-next-line react/no-array-index-key
-                                        <Grid item xs={4} key={index}>
-                                            <RectangleBlock data={data}>
-                                                Content
+                                    // eslint-disable-next-line react/no-array-index-key
+                                    <Grid item xs={4} key={index}>
+                                        <RectangleBlock data={data}>
+                                            Content
                                             </RectangleBlock>
-                                        </Grid>
-                                    ))}
+                                    </Grid>
+                                ))}
 
                             </Grid>
                         </Grid>

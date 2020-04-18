@@ -1,11 +1,13 @@
-/* eslint-disable react/jsx-indent */
+rc/* eslint-disable react/jsx-indent */
 /* eslint-disable indent */
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { Grid } from '@material-ui/core';
-import { RectangleBlock, OffersList, MessagesList } from 'dan-components';
-import BlankPage from '../BlankPage';
+import { RectangleBlock } from 'dan-components';
+import BlankPage from '../../BlankPage';
+import {  OffersList, MessagesList } from 'dan-components';
+
 
 class UserDashBoard extends React.Component {
     render() {
