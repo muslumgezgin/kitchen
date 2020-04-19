@@ -42,7 +42,7 @@ const styles = theme => ({
   },
   containerSide: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'flex-end',
     width: '100%',
     [theme.breakpoints.down('md')]: {
@@ -57,11 +57,13 @@ const styles = theme => ({
     height: '100%',
     borderRadius: 0,
     [theme.breakpoints.up('md')]: {
-      width: 480,
+      width: 592,
     },
     '& $topBar': {
       marginBottom: theme.spacing(4)
-    }
+    },
+    textAlign: 'left',
+    // backgroundColor: 'green',
   },
   fullWrap: {
     ...wrapper(theme, 0.9),
@@ -76,19 +78,27 @@ const styles = theme => ({
   },
   petal: {
     backgroundImage: theme.palette.type === 'dark' ? `url(${bgLight})` : `url(${bg})`,
+    // backgroundColor: 'yellow',
   },
   icon: {},
   topBar: {
     display: 'flex',
     justifyContent: 'space-between',
+    marginTop: 156,
+    marginLeft: 24,
     '& $icon': {
       marginRight: theme.spacing(1)
     },
+    '& a': {
+      marginRight: 24,
+    },
     [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
+      // justifyContent: 'center',
+      display: 'block',
+      marginLeft: 124,
       marginBottom: theme.spacing(3),
       '& a': {
-        display: 'none'
+        // display: 'none'
       }
     }
   },
@@ -130,7 +140,7 @@ const styles = theme => ({
     },
   },
   pageFormSideWrap: {
-    margin: '0 auto',
+    margin: '30px auto',
     [theme.breakpoints.only('sm')]: {
       width: 480,
     },
@@ -148,11 +158,28 @@ const styles = theme => ({
     }
   },
   socmedSideLogin: {
-    padding: '24px 24px 1px',
+    padding: '4px 24px 1px',
     margin: '0 auto',
     '& button': {
-      padding: '4px 16px',
-      margin: `0 ${theme.spacing(1)}px`
+      margin: `${theme.spacing(1)}px 0`,
+      width: '60%',
+      height: 51,
+      border: 'solid 1px #3b5c9f',
+      borderRadius: 50,
+      backgroundColor: '#3b5c9f',
+      fontWeight: 'bold',
+      textAlign: 'left',
+      color: '#ffffff',
+      justifyContent: 'flex-start',
+  
+      '&:hover': {
+        backgroundColor: '#3b5c9f',
+      }
+    },
+    '& #gLogin': {
+      color: '#0090e3',
+      backgroundColor: '#ffffff',
+      marginBottom: 24,
     },
     [theme.breakpoints.only('sm')]: {
       width: 480,
@@ -178,7 +205,9 @@ const styles = theme => ({
     width: '100%'
   },
   title: {
-    color: theme.palette.primary.main,
+    color: '#0090e3',
+    fontWeight: 'bold',
+    fontSize: 36,
   },
   subtitle: {
     fontSize: 14
@@ -197,17 +226,31 @@ const styles = theme => ({
   opening: {
     color: theme.palette.common.white,
     width: '100%',
-    textAlign: 'center',
+    textAlign: 'left',
+    padding: '59px 72px',
     '& h1': {
       display: 'block',
+      fontWeight: 800,
+      marginBottom: 30,
       [theme.breakpoints.down('md')]: {
         fontSize: 32,
-        lineHeight: '48px'
+        lineHeight: '48px',
+        marginBottom: 12,
+      }
+    },
+    '& h4': {
+      fontFamily: 'TitilliumWeb',
+      fontSize: 30,
+      marginBottom: 162,
+      [theme.breakpoints.down('md')]: {
+        fontSize: 17,
+        marginBottom: 62,
       }
     },
     '& p': {
       color: theme.palette.common.white,
-      fontSize: 18,
+      fontSize: 26,
+      fontWeight: 'normal',
       [theme.breakpoints.down('md')]: {
         fontSize: 14,
       }
@@ -216,7 +259,7 @@ const styles = theme => ({
   label: {},
   btnArea: {
     display: 'flex',
-    justifyContent: 'space-around',
+    flexDirection: 'column',
     margin: `${theme.spacing(2)}px 0`,
     fontSize: 12,
     '& $label': {
@@ -225,9 +268,12 @@ const styles = theme => ({
         fontSize: 12
       }
     },
-    '& button': {
-      margin: `0 ${theme.spacing(1)}px`
+    '& #continue': {
+      color: '#ffffff',
+      backgroundColor: '#2196f3',
+      marginTop: 24,
     },
+
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
       '& button': {
