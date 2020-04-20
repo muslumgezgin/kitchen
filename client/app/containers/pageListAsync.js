@@ -345,6 +345,11 @@ export const CompaniesDashBoardPage = loadable(() =>
   fallback: <Loading />,
 });
 
+export const AdminDashBoardPage = loadable(() =>
+  import('./Pages/admin/AdminDashBoard'), {
+  fallback: <Loading />,
+});
+
 export const UserOffersPage = loadable(() =>
   import('./Pages/UserOffers'), {
   fallback: <Loading />,
@@ -352,6 +357,21 @@ export const UserOffersPage = loadable(() =>
 
 export const CompaniesOffersPage = loadable(() =>
   import('./Pages/CompaniesOffers'), {
+  fallback: <Loading />,
+});
+
+export const AdminOffersPage = loadable(() =>
+  import('./Pages/admin/AdminOffers'), {
+  fallback: <Loading />,
+});
+
+export const AdminUserList = loadable(() =>
+  import('./Pages/admin/UserList'), {
+  fallback: <Loading />,
+});
+
+export const AdminCompaniesList = loadable(() =>
+  import('./Pages/admin/CompaniesList'), {
   fallback: <Loading />,
 });
 export const Pricing = loadable(() =>

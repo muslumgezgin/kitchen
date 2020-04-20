@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable quotes */
 /* eslint-disable react/no-multi-comp */
 /* eslint-disable no-multiple-empty-lines */
@@ -9,14 +10,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import MUIDataTable from 'mui-datatables';
-import css from 'dan-styles/Buttons.scss';
-import Button from '@material-ui/core/Button';
-
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
+import css from 'dan-styles/Buttons.scss';
 import css2 from './index.scss';
 
+import pdfImage from './images/pdf.svg';
 
 
 const styles = theme => ({
@@ -48,7 +48,8 @@ class AdvFilter extends React.Component {
             {
                 name: 'Offerte type',
                 options: {
-                    filter: true
+                    filter: true,
+                    customBodyRender: (value) => this.renderType(value)
                 }
             },
             {
@@ -58,19 +59,32 @@ class AdvFilter extends React.Component {
                 }
             },
             {
-                name: 'Reacties',
+                name: 'Gebruiker',
                 options: {
-                    filter: false,
-                    customBodyRender: (value) => (
-                        <LinearProgress variant="determinate" color="secondary" value={value[0]} />
-                    )
+                    filter: true,
                 }
             },
             {
-                name: 'Status',
+                name: 'Plaats',
+                options: {
+                    filter: true,
+                }
+            },
+            {
+                name: 'Termijn',
+                options: {
+                    filter: true,
+                }
+            },
+            {
+                name: 'Bijlage',
                 options: {
                     filter: false,
-                    customBodyRender: (value) => this.renderStatus(value)
+                    customBodyRender: () => (
+                        <Link to="">
+                            <img src={pdfImage} alt="pdf" />
+                        </Link>
+                    )
                 }
             },
             {
@@ -82,9 +96,9 @@ class AdvFilter extends React.Component {
             },
         ],
         data: [
-            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'actief', "sfe"],
-            ['Offerte aanvraag 1', 'Business Consultant', [55, 2], 'concept', "fsdfs"],
-            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'afgehandeld', "fsfd"],
+            ['Offerte vergelijkiing', '18-08-2019', 'Ali Oz', 'Amsterdam', '3 manden', 'pdf', 'link'],
+            ['3d ontwerp offerte ', '18-08-2019', 'Ali Oz', 'Amsterdam', '6 manden', 'pdf', 'link']
+
         ]
     }
 
@@ -95,22 +109,16 @@ class AdvFilter extends React.Component {
                 color=""
                 className={css.seeButton}
             >
-                BEKIJKEN &nbsp; &#x279C;
+                BEWERKEN &nbsp; &#x279C;
             </Button>
         );
     }
 
-
-    renderStatus(status) {
-        let name = status + 'Button';
+    renderType(value) {
         return (
-            <Button
-                variant="contained"
-                color=""
-                className={css[name]}
-            >
-                {status.toUpperCase()}
-            </Button>
+            <div>
+                {value}
+            </div>
         );
     }
 

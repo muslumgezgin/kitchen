@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable quotes */
 /* eslint-disable react/no-multi-comp */
 /* eslint-disable no-multiple-empty-lines */
@@ -9,14 +10,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import MUIDataTable from 'mui-datatables';
-import css from 'dan-styles/Buttons.scss';
-import Button from '@material-ui/core/Button';
-
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
+import css from 'dan-styles/Buttons.scss';
 import css2 from './index.scss';
-
 
 
 const styles = theme => ({
@@ -46,30 +44,33 @@ class AdvFilter extends React.Component {
     state = {
         columns: [
             {
-                name: 'Offerte type',
+                name: 'Naam',
                 options: {
                     filter: true
                 }
             },
             {
-                name: 'Datum',
+                name: 'E-mail',
                 options: {
                     filter: true,
                 }
             },
             {
-                name: 'Reacties',
+                name: 'Telefoon',
                 options: {
-                    filter: false,
-                    customBodyRender: (value) => (
-                        <LinearProgress variant="determinate" color="secondary" value={value[0]} />
-                    )
+                    filter: true,
                 }
             },
             {
-                name: 'Status',
+                name: 'Plaats',
                 options: {
-                    filter: false,
+                    filter: true,
+                }
+            },
+            {
+                name: 'status',
+                options: {
+                    filter: true,
                     customBodyRender: (value) => this.renderStatus(value)
                 }
             },
@@ -82,9 +83,9 @@ class AdvFilter extends React.Component {
             },
         ],
         data: [
-            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'actief', "sfe"],
-            ['Offerte aanvraag 1', 'Business Consultant', [55, 2], 'concept', "fsdfs"],
-            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'afgehandeld', "fsfd"],
+            ['Ali Oz', 'alioz@mail.com', '0612345678', 'Amsterdam', 'actif', 'link'],
+            ['Ali Oz', 'alioz@mail.com', '0612345678', 'Amsterdam', 'passive', 'link'],
+
         ]
     }
 
@@ -100,17 +101,16 @@ class AdvFilter extends React.Component {
         );
     }
 
+    renderStatus(value) {
+        let className = '';
+        if (value === 'actif') {
+            className = 'actifType';
+        } else {
+            className = 'passifType';
+        }
 
-    renderStatus(status) {
-        let name = status + 'Button';
         return (
-            <Button
-                variant="contained"
-                color=""
-                className={css[name]}
-            >
-                {status.toUpperCase()}
-            </Button>
+            <div className={className} />
         );
     }
 
