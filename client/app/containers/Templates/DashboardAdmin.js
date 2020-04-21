@@ -91,7 +91,7 @@ class Dashboard extends React.Component {
           gradient={gradient}
           deco={deco}
           bgPosition={bgPosition}
-          place={"Berichten"}
+          place={place}
           titleException={titleException}
           handleOpenGuide={this.handleOpenGuide}
         >

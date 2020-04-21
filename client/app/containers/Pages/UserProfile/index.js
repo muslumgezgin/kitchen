@@ -1,47 +1,92 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import brand from 'dan-api/dummy/brand';
-import AppBar from '@material-ui/core/AppBar';
-import dummy from 'dan-api/dummy/dummyContents';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Hidden from '@material-ui/core/Hidden';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import SupervisorAccount from '@material-ui/icons/SupervisorAccount';
-import Favorite from '@material-ui/icons/Favorite';
-import PhotoLibrary from '@material-ui/icons/PhotoLibrary';
-import { withStyles } from '@material-ui/core/styles';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import data from 'dan-api/apps/timelineData';
-import { fetchAction } from 'dan-actions/SocmedActions';
-import {
-  Cover,
-  About,
-  Connection,
-  Favorites,
-  Albums
-} from 'dan-components';
-import bgCover from 'dan-images/petal_bg.svg';
-import styles from 'dan-components/SocialMedia/jss/cover-jss';
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import brand from "dan-api/dummy/brand";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
+import CreateIcon from "@material-ui/icons/Create";
+//
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+//
+import dummy from "dan-api/dummy/dummyContents";
+import { withStyles } from "@material-ui/core/styles";
+import data from "dan-api/apps/timelineData";
+import { fetchAction } from "dan-actions/SocmedActions";
+import styled from "styled-components";
+import styles from "dan-components/SocialMedia/jss/cover-jss";
+
+const ProfileWrapper = styled.section`
+  width: 100%;
+  height: 100%;
+  padding: 26px 62px;
+  box-shadow: 0 10px 15px 0 rgba(205, 205, 205, 0.5);
+  background-color: #ffffff;
+`;
+const ProfilNavBar = styled.nav`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    width: 246px;
+    height: 41px;
+    border-radius: 18px;
+    background-color: #ff6600;
+
+    // button text:
+    color: white;
+    font-family: OpenSans;
+    font-size: 14px;
+    font-weight: bold;
+  }
+`;
+const ProfilePhotoWrapper = styled.figure`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+`;
+const Figcaption = styled.figcaption`
+  display: grid;
+  margin-left: 18px;
+  font-family: SourceSansPro;
+  font-size: 14px;
+  color: #000000;
+
+  button {
+    padding: 0;
+  }
+  span {
+    color: #8b8b8b;
+    font-size: 14px;
+    font-family: SourceSansPro;
+  }
+`;
+const FormField = styled.section`
+  width: 100%;
+  margin-top: 35px;
+`;
 
 function TabContainer(props) {
   const { children } = props;
-  return (
-    <div style={{ paddingTop: 8 * 3 }}>
-      {children}
-    </div>
-  );
+  return <div style={{ paddingTop: 8 * 3 }}>{children}</div>;
 }
 
 TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 class UserProfile extends React.Component {
   state = {
-    value: 0,
+    value: 0
   };
 
   componentDidMount() {
@@ -53,8 +98,17 @@ class UserProfile extends React.Component {
     this.setState({ value });
   };
 
+  // todo: implement this to change profile photo
+  profilePhotoChange = () => {
+    console.log("comming soon");
+  };
+
+  handleSubmit = () => {
+    console.log("comming soon");
+  };
+
   render() {
-    const title = brand.name + ' - Profile';
+    const title = brand.name + " - Profile";
     const description = brand.desc;
     const { dataProps, classes } = this.props;
     const { value } = this.state;
@@ -68,13 +122,46 @@ class UserProfile extends React.Component {
           <meta property="twitter:title" content={title} />
           <meta property="twitter:description" content={description} />
         </Helmet>
-        <Cover
+        <ProfileWrapper>
+          <ProfilNavBar>
+            <Button
+              size="small"
+              className={classes.buttonLink}
+              to="/new-offer" // todo: make sure there is a new-offer comp.
+            >
+              nieuw offerte
+              <Icon className={classes.icon}>arrow_forward</Icon>
+            </Button>
+          </ProfilNavBar>
+          <ProfilePhotoWrapper>
+            <img src={dummy.user.avatar} alt="" />
+            <Figcaption>
+              Profielfoto
+              <Button
+                size="small"
+                className={classes.buttonLink}
+                onClick={this.profilePhotoChange}
+              >
+                <CreateIcon fontSize="small" htmlColor="#818181" />
+                <span>Wijzigen</span>
+              </Button>
+            </Figcaption>
+          </ProfilePhotoWrapper>
+          <FormField>
+            <form onSubmit={this.handleSubmit}>
+              <div className={classes.fieldBasic}>
+                ..form fields..
+              </div>
+            </form>
+          </FormField>
+        </ProfileWrapper>
+        {/* <Cover
           coverImg={bgCover}
           avatar={dummy.user.avatar}
           name={dummy.user.name}
           desc="Consectetur adipiscing elit."
-        />
-        <AppBar position="static" className={classes.profileTab}>
+        /> */}
+        {/* <AppBar position="static" className={classes.profileTab}>
           <Hidden mdUp>
             <Tabs
               value={value}
@@ -105,11 +192,11 @@ class UserProfile extends React.Component {
               <Tab icon={<PhotoLibrary />} label="4 ALBUMS" />
             </Tabs>
           </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={dataProps} /></TabContainer>}
+        </AppBar> */}
+        {/* {value === 0 && <TabContainer><About data={dataProps} /></TabContainer>}
         {value === 1 && <TabContainer><Connection /></TabContainer>}
         {value === 2 && <TabContainer><Favorites /></TabContainer>}
-        {value === 3 && <TabContainer><Albums /></TabContainer>}
+        {value === 3 && <TabContainer><Albums /></TabContainer>} */}
       </div>
     );
   }
@@ -118,13 +205,13 @@ class UserProfile extends React.Component {
 UserProfile.propTypes = {
   classes: PropTypes.object.isRequired,
   dataProps: PropTypes.object.isRequired,
-  fetchData: PropTypes.func.isRequired,
+  fetchData: PropTypes.func.isRequired
 };
 
-const reducer = 'socmed';
+const reducer = "socmed";
 const mapStateToProps = state => ({
   force: state, // force state from reducer
-  dataProps: state.getIn([reducer, 'dataTimeline'])
+  dataProps: state.getIn([reducer, "dataTimeline"])
 });
 
 const constDispatchToProps = dispatch => ({
