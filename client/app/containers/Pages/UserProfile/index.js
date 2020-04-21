@@ -15,6 +15,18 @@ import data from "dan-api/apps/timelineData";
 import { fetchAction } from "dan-actions/SocmedActions";
 import styled from "styled-components";
 import styles from "dan-components/SocialMedia/jss/cover-jss";
+// form fields..
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import InputLabel from "@material-ui/core/InputLabel";
+import { Field, reduxForm } from "redux-form/immutable";
+import MenuItem from "@material-ui/core/MenuItem";
+import {
+  CheckboxRedux,
+  SelectRedux,
+  TextFieldRedux,
+  SwitchRedux
+} from "dan-components/Forms/ReduxFormMUI";
 
 const ProfileWrapper = styled.section`
   width: 100%;
@@ -22,6 +34,7 @@ const ProfileWrapper = styled.section`
   padding: 26px 62px;
   box-shadow: 0 10px 15px 0 rgba(205, 205, 205, 0.5);
   background-color: #ffffff;
+  font-family: OpenSans;
 `;
 const ProfilNavBar = styled.nav`
   width: 100%;
@@ -36,7 +49,6 @@ const ProfilNavBar = styled.nav`
 
     // button text:
     color: white;
-    font-family: OpenSans;
     font-size: 14px;
     font-weight: bold;
   }
@@ -73,6 +85,31 @@ const Figcaption = styled.figcaption`
 const FormField = styled.section`
   width: 100%;
   margin-top: 35px;
+  text-align: left;
+
+  .formLabel{
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .selectLabel {
+    // font-size: 9px; // this value has requested by designer but I think he needs glasses🧐
+    font-weight: 600;
+    color: #2196f3;
+  }
+
+  .genderSelection {
+    width: 137px;
+    height: 40px;
+    border-radius: 6px;
+    border: solid 1px #2196f3;
+  }
+  .menuItem{
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
 `;
 
 function TabContainer(props) {
@@ -103,6 +140,7 @@ class UserProfile extends React.Component {
     console.log("comming soon");
   };
 
+  // todo: implement this to change submit new user infos
   handleSubmit = () => {
     console.log("comming soon");
   };
@@ -150,53 +188,26 @@ class UserProfile extends React.Component {
           <FormField>
             <form onSubmit={this.handleSubmit}>
               <div className={classes.fieldBasic}>
-                ..form fields..
+                <FormControl className={classes.field}>
+                  <FormLabel className='formLabel' component="label">Aanhef</FormLabel>
+                  <InputLabel className="selectLabel" htmlFor="selection">
+                    Gekozen item
+                  </InputLabel>
+                  <Field
+                    className="genderSelection"
+                    name="selection"
+                    component={SelectRedux}
+                    placeholder="Selection"
+                  >
+                    <MenuItem className='menuItem' value="Dhr.">Dhr.</MenuItem>
+                    <MenuItem className='menuItem' value="Mvr.">Mvr.</MenuItem>
+                    <MenuItem className='menuItem' value="mixi">mixi</MenuItem>
+                  </Field>
+                </FormControl>
               </div>
             </form>
           </FormField>
         </ProfileWrapper>
-        {/* <Cover
-          coverImg={bgCover}
-          avatar={dummy.user.avatar}
-          name={dummy.user.name}
-          desc="Consectetur adipiscing elit."
-        /> */}
-        {/* <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<SupervisorAccount />} />
-              <Tab icon={<Favorite />} />
-              <Tab icon={<PhotoLibrary />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SupervisorAccount />} label="20 CONNECTIONS" />
-              <Tab icon={<Favorite />} label="18 FAVORITES" />
-              <Tab icon={<PhotoLibrary />} label="4 ALBUMS" />
-            </Tabs>
-          </Hidden>
-        </AppBar> */}
-        {/* {value === 0 && <TabContainer><About data={dataProps} /></TabContainer>}
-        {value === 1 && <TabContainer><Connection /></TabContainer>}
-        {value === 2 && <TabContainer><Favorites /></TabContainer>}
-        {value === 3 && <TabContainer><Albums /></TabContainer>} */}
       </div>
     );
   }
@@ -217,10 +228,15 @@ const mapStateToProps = state => ({
 const constDispatchToProps = dispatch => ({
   fetchData: bindActionCreators(fetchAction, dispatch)
 });
+// have no idea why this is necessary 🤔 but doesn't work without it:
+const ReduxFormMappedForUserProfile = reduxForm({
+  form: "immutableExample",
+  enableReinitialize: true
+})(UserProfile);
 
 const UserProfileMapped = connect(
   mapStateToProps,
   constDispatchToProps
-)(UserProfile);
+)(ReduxFormMappedForUserProfile);
 
 export default withStyles(styles)(UserProfileMapped);
