@@ -6,11 +6,14 @@ import { UserRepository } from './user.repository';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport'
 import { JwtStrategy } from "./jwt.strategy";
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule } from '@nestjs/config';
+import { SessionSerializer } from './session.serializer';
+import { LocalStrategy } from './local.strategy';
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    PassportModule.register({ defaultStrategy: 'jwt' }),
+    PassportModule,
     JwtModule.register({
       secret: process.env.SECRET_KEY,
       signOptions: {
@@ -22,11 +25,16 @@ import { ConfigModule } from '@nestjs/config'
   controllers: [AuthController],
   providers: [
     AuthService,
-    JwtStrategy
+    UserRepository,
+    JwtStrategy,
+    SessionSerializer,
+    LocalStrategy
   ],
   exports: [
     JwtStrategy,
-    PassportModule
-  ]
+    PassportModule,
+    LocalStrategy,
+    UserRepository,
+ ]
 })
 export class AuthModule { }
