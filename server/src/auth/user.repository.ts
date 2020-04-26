@@ -44,22 +44,6 @@ export class UserRepository extends Repository<User>
     }
 
 
-    async validateUser(username: string): Promise<{ username: string, roles: RolesEnum }> {
-
-
-        console.log(username);
-        console.log(username);
-
-        const user = await this.findOne({ username });
-
-        console.log(user);
-        if (user) {
-            return user;
-        }
-        return null;
-    }
-
-
     async validateUserPassword(authCredentialsDto: AuthCredantialsDto): Promise<{ username: string, roles: RolesEnum }> {
         const { username, password } = authCredentialsDto;
         const user = await this.findOne({ username });
