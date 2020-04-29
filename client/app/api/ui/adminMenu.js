@@ -31,7 +31,7 @@ module.exports = [
         key: "bedrijven",
         name: "Bedrijven",
         icon: "ios-people-outline",
-        link: "/admin/compaines",
+        link: "/admin/companies",
         child: []
     },
     {

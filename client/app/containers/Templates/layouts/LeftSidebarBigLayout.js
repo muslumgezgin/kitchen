@@ -30,6 +30,7 @@ class LeftSidebarBigLayout extends React.Component {
     } = this.props;
     return (
       <Fragment>
+        {/* right-top nav */}
         <Header
           toggleDrawerOpen={toggleDrawer}
           margin={sidebarOpen}
@@ -41,6 +42,7 @@ class LeftSidebarBigLayout extends React.Component {
           history={history}
           openGuide={handleOpenGuide}
         />
+        {/* left sidebar */}
         <SidebarBig
           dataMenu={dataMenu}
           loadTransition={loadTransition}
@@ -54,6 +56,7 @@ class LeftSidebarBigLayout extends React.Component {
           )}
           id="mainContent"
         >
+          {/* top blue background */}
           <Decoration
             mode={mode}
             gradient={gradient}

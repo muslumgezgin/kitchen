@@ -6,8 +6,10 @@ import Dashboard from '../Templates/DashboardUsers';
 
 import {
   Chat,
-  UserDashboardPage,
-  UserOffersPage,
+  AdminDashBoardPage,
+  AdminOffersPage,
+  AdminUserList,
+  AdminCompaniesList,
   BlankPage,
   NotFound,
   UserNewOfferPage
@@ -20,9 +22,11 @@ class Admin extends React.Component {
       <Dashboard history={history} changeMode={changeMode} dataMenu={dataMenu}>
         <Switch>
           {/* Home */}
-          <Route exact path="/admin/dashboard" component={UserDashboardPage} />
-          <Route path="/admin/offers" component={UserOffersPage} />
+          <Route exact path="/admin/dashboard" component={AdminDashBoardPage} />
+          <Route path="/admin/offers" component={AdminOffersPage} />
           <Route path="/admin/messages" component={Chat} />
+          <Route path="/admin/users" component={AdminUserList} />
+          <Route path="/admin/companies" component={AdminCompaniesList} />
           <Route path="/admin/newOffer" component={UserNewOfferPage} />
           <Route path="/app/pages/blank-page" component={BlankPage} />
           {/* Default */}

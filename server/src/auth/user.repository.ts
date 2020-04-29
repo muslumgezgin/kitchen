@@ -43,14 +43,14 @@ export class UserRepository extends Repository<User>
 
     }
 
+
     async validateUserPassword(authCredentialsDto: AuthCredantialsDto): Promise<{ username: string, roles: RolesEnum }> {
         const { username, password } = authCredentialsDto;
-
         const user = await this.findOne({ username });
 
-        const { roles } = user;
+
         if (user && await user.validatePassword(password)) {
-            return { username: user.username, roles };
+            return { username: user.username, roles: RolesEnum.Company };
         }
         else {
             return null;

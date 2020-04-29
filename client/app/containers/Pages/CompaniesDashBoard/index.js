@@ -3,9 +3,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
-import { OffersList, MessagesList } from 'dan-components';
+import { OffersList, MessagesList, RectangleBlock } from 'dan-components';
 import { Grid } from '@material-ui/core';
-import { RectangleBlock } from 'dan-components';
 import BlankPage from '../BlankPage';
 
 
@@ -70,7 +69,7 @@ class CompaniesDashBoard extends React.Component {
                                     <Grid item xs={4} key={index}>
                                         <RectangleBlock data={data}>
                                             Content
-                                            </RectangleBlock>
+                                        </RectangleBlock>
                                     </Grid>
                                 ))}
 
