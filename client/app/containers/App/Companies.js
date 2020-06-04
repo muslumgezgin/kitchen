@@ -1,3 +1,5 @@
+/* eslint-disable padded-blocks */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
@@ -13,6 +15,28 @@ import {
 } from '../pageListAsync';
 
 class Companies extends React.Component {
+
+  componentWillMount() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      this.redirect(user.type);
+    }
+  }
+
+  redirect(type) {
+    if (type === 'admin') {
+      this.props.history.push('/admin');
+
+    } else if (type === 'company') {
+      this.props.history.push('/companies');
+
+    } else if (type === 'user') {
+      this.props.history.push('/users');
+    } else {
+      this.props.history.push('/login');
+    }
+  }
+
   render() {
     const { changeMode, history } = this.props;
     return (

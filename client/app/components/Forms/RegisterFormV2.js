@@ -108,18 +108,6 @@ class RegisterFormV2 extends React.Component {
               <div>
                 <FormControl className={classes.formControl}>
                   <Field
-                    name="name"
-                    component={TextFieldRedux}
-                    placeholder="Username"
-                    label="Username"
-                    required
-                    className={classes.field}
-                  />
-                </FormControl>
-              </div>
-              <div>
-                <FormControl className={classes.formControl}>
-                  <Field
                     name="email"
                     component={TextFieldRedux}
                     placeholder="Your Email"

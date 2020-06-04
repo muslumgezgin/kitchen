@@ -1,27 +1,27 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
-import { NavLink } from "react-router-dom";
-import { Field, reduxForm } from "redux-form/immutable";
-import Button from "@material-ui/core/Button";
-import { connect } from "react-redux";
-import IconButton from "@material-ui/core/IconButton";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Typography from "@material-ui/core/Typography";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import ArrowForward from "@material-ui/icons/ArrowForward";
-import Paper from "@material-ui/core/Paper";
-import Icon from "@material-ui/core/Icon";
-import styled from "styled-components";
-import gIcon from "../../../public/images/icon/g_search.svg";
-import facebook from "../../../public/images/icon/facebook.svg";
-import styles from "./user-jss";
-import { TextFieldRedux, CheckboxRedux } from "./ReduxFormMUI";
-import { ContentDivider } from "../Divider";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form/immutable';
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import ArrowForward from '@material-ui/icons/ArrowForward';
+import Paper from '@material-ui/core/Paper';
+import Icon from '@material-ui/core/Icon';
+import styled from 'styled-components';
+import gIcon from '../../../public/images/icon/g_search.svg';
+import facebook from '../../../public/images/icon/facebook.svg';
+import styles from './user-jss';
+import { TextFieldRedux, CheckboxRedux } from './ReduxFormMUI';
+import { ContentDivider } from '../Divider';
 
 // style
 const LoginIcon = styled.img`
@@ -32,12 +32,12 @@ const LoginIcon = styled.img`
 `;
 
 // validation functions
-const required = value => (value == null ? "Required" : undefined);
-const email = value =>
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "Invalid email"
-    : undefined;
+const required = value => (value == null ? 'Required' : undefined);
+const email = value => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+  ? 'Invalid email'
+  : undefined);
 
+// eslint-disable-next-line prefer-arrow-callback
 const LinkBtn = React.forwardRef(function LinkBtn(props, ref) {
   // eslint-disable-line
   return <NavLink to={props.to} {...props} innerRef={ref} />; // eslint-disable-line
@@ -59,7 +59,9 @@ class LoginFormV2 extends React.Component {
   };
 
   render() {
-    const { classes, handleSubmit, pristine, submitting, deco } = this.props;
+    const {
+      classes, handleSubmit, pristine, submitting, deco, loginError
+    } = this.props;
     const { showPassword } = this.state;
     return (
       <Paper className={classNames(classes.sideWrap, deco && classes.petal)}>
@@ -82,13 +84,13 @@ class LoginFormV2 extends React.Component {
             <Button
               variant="contained"
               className={classes.button}
-              id='facebook'
+              id="facebook"
               startIcon={<LoginIcon src={facebook} alt="" />}
             >
               INLOGGEN MET FACEBOOK
             </Button>
             <Button
-              id='gLogin'
+              id="gLogin"
               variant="contained"
               className={classes.button}
               startIcon={<LoginIcon src={gIcon} alt="" />}
@@ -111,6 +113,7 @@ class LoginFormV2 extends React.Component {
                   validate={[required, email]}
                   className={classes.field}
                 />
+
               </FormControl>
             </div>
             <div>
@@ -118,7 +121,7 @@ class LoginFormV2 extends React.Component {
                 <Field
                   name="password"
                   component={TextFieldRedux}
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   label="Wachtwoord"
                   InputProps={{
                     endAdornment: (
@@ -154,9 +157,14 @@ class LoginFormV2 extends React.Component {
                 Wachtwoord vergeten
               </Button>
             </div>
+            {loginError && (
+              <div>
+                uw wachtwoord of gebruikersnaam zijn niet correct
+              </div>
+            )}
             <div className={classes.btnArea}>
               <Button
-                id='continue'
+                id="continue"
                 variant="contained"
                 fullWidth
                 size="large"
@@ -181,20 +189,22 @@ LoginFormV2.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
-  deco: PropTypes.bool.isRequired
+  deco: PropTypes.bool.isRequired,
+  loginError: PropTypes.any.isRequired
+
 };
 
 const LoginFormReduxed = reduxForm({
-  form: "immutableExample",
+  form: 'immutableExample',
   enableReinitialize: true
 })(LoginFormV2);
 
-const reducerLogin = "login";
-const reducerUi = "ui";
+const reducerLogin = 'login';
+const reducerUi = 'ui';
 const FormInit = connect(state => ({
   force: state,
-  initialValues: state.getIn([reducerLogin, "usersLogin"]),
-  deco: state.getIn([reducerUi, "decoration"])
+  initialValues: state.getIn([reducerLogin, 'usersLogin']),
+  deco: state.getIn([reducerUi, 'decoration'])
 }))(LoginFormReduxed);
 
 export default withStyles(styles)(FormInit);

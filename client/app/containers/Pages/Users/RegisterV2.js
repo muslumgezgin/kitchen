@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import brand from 'dan-api/dummy/brand';
 import { RegisterFormV2 } from 'dan-components';
 import styles from 'dan-components/Forms/user-jss';
+import { createUser } from '../../../data/data';
 
 class RegisterV2 extends React.Component {
   state = {
@@ -15,9 +16,10 @@ class RegisterV2 extends React.Component {
 
   submitForm(values) {
     setTimeout(() => {
-      this.setState({ valueForm: values });
+      const valueForm = values.toJS();
+      this.setState({ valueForm });
       console.log(`You submitted:\n\n${this.state.valueForm}`); // eslint-disable-line
-      window.location.href = '/app';
+      createUser(valueForm);
     }, 500); // simulate server latency
   }
 

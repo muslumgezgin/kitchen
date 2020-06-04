@@ -1,7 +1,7 @@
 const config = {
   baseurl: '/',
   navLink: {
-    url: 'http://localhost:3001/'
+    url: 'http://134.209.198.58:3100/'
   },
 };
 
