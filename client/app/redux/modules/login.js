@@ -16,22 +16,6 @@ const authStart = (state, action) => updateObject(state, {
   loading: true
 });
 
-const loginStart = (state, action) => {
-
-  console.log(state);
-  console.log(action);
-  const { entries } = state._root;
-  console.log(entries[0][1])
-  const data = entries[0][1]._root.entries;
-
-  let username = data[0][1];
-  let password = data[1][1];
-  console.log(username);
-  const x = login(username, password);
-  console.log(x);
-  return {};
-}
-
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.user.token,

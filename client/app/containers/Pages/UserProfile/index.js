@@ -19,14 +19,9 @@ import styles from "dan-components/SocialMedia/jss/cover-jss";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import InputLabel from "@material-ui/core/InputLabel";
-import { Field, reduxForm } from "redux-form/immutable";
 import MenuItem from "@material-ui/core/MenuItem";
-import {
-  CheckboxRedux,
-  SelectRedux,
-  TextFieldRedux,
-  SwitchRedux
-} from "dan-components/Forms/ReduxFormMUI";
+import { Select, TextField } from "@material-ui/core";
+
 
 const ProfileWrapper = styled.section`
   width: 100%;
@@ -40,7 +35,6 @@ const ProfilNavBar = styled.nav`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-
   button {
     width: 246px;
     height: 41px;
@@ -148,7 +142,7 @@ class UserProfile extends React.Component {
   render() {
     const title = brand.name + " - Profile";
     const description = brand.desc;
-    const { dataProps, classes } = this.props;
+    const { classes } = this.props;
     const { value } = this.state;
     return (
       <div>
@@ -187,24 +181,31 @@ class UserProfile extends React.Component {
           </ProfilePhotoWrapper>
           <FormField>
             <form onSubmit={this.handleSubmit}>
-              <div className={classes.fieldBasic}>
-                <FormControl className={classes.field}>
-                  <FormLabel className='formLabel' component="label">Aanhef</FormLabel>
-                  <InputLabel className="selectLabel" htmlFor="selection">
-                    Gekozen item
-                  </InputLabel>
-                  <Field
-                    className="genderSelection"
-                    name="selection"
-                    component={SelectRedux}
-                    placeholder="Selection"
-                  >
-                    <MenuItem className='menuItem' value="Dhr.">Dhr.</MenuItem>
-                    <MenuItem className='menuItem' value="Mvr.">Mvr.</MenuItem>
-                    <MenuItem className='menuItem' value="mixi">mixi</MenuItem>
-                  </Field>
-                </FormControl>
+              <div className={classes.field}>
+                <FormLabel className='formLabel' component="label">Aanhef</FormLabel>
+                <InputLabel className="selectLabel" id="selection">
+                  Gekozen item
+                </InputLabel>
+                <Select
+                  className="genderSelection"
+                  name="selection"
+                  labelId="selection"
+                  placeholder="Selection"
+                >
+                  <MenuItem className='menuItem' value="Dhr.">Dhr.</MenuItem>
+                  <MenuItem className='menuItem' value="Mvr.">Mvr.</MenuItem>
+                  <MenuItem className='menuItem' value="mixi">mixi</MenuItem>
+                </Select>
+                <TextField value='muslumdsa' id="outlined-basic" className='InputName inputField' label="Outlined" variant="outlined" />
               </div>
+              <TextField value='muslum' id="outlined-basic" className='InputAdress inputField' label="Outlined" variant="outlined" />
+              <TextField value='muslum'
+                id="outlined-basic"
+                className='InputHouseNumber inputField'
+                label="Outlined"
+                variant="outlined" />
+
+
             </form>
           </FormField>
         </ProfileWrapper>
@@ -215,7 +216,6 @@ class UserProfile extends React.Component {
 
 UserProfile.propTypes = {
   classes: PropTypes.object.isRequired,
-  dataProps: PropTypes.object.isRequired,
   fetchData: PropTypes.func.isRequired
 };
 
@@ -228,15 +228,10 @@ const mapStateToProps = state => ({
 const constDispatchToProps = dispatch => ({
   fetchData: bindActionCreators(fetchAction, dispatch)
 });
-// have no idea why this is necessary 🤔 but doesn't work without it:
-const ReduxFormMappedForUserProfile = reduxForm({
-  form: "immutableExample",
-  enableReinitialize: true
-})(UserProfile);
 
 const UserProfileMapped = connect(
   mapStateToProps,
   constDispatchToProps
-)(ReduxFormMappedForUserProfile);
+)(UserProfile);
 
 export default withStyles(styles)(UserProfileMapped);

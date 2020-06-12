@@ -84,11 +84,11 @@ class UserDashBoard extends React.Component {
                         <Grid item xs={9}>
                             <Grid container>
                                 <Grid item xs={1} />
-                                <Grid item xs={5}>
+                                <Grid item xs={5} xl={11}>
                                     <MessagesList data={messagesData} />
                                 </Grid>
                                 <Grid item xs={1} />
-                                <Grid item xs={5}>
+                                <Grid item xs={5} xl={11}>
                                     <OffersList data={UserData} />
                                 </Grid>
                             </Grid>

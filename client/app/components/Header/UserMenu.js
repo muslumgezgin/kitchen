@@ -28,9 +28,11 @@ import styles from "./header-jss";
 class UserMenu extends React.Component {
   state = {
     anchorEl: null,
-    openMenu: null
+    openMenu: null,
+    user: {}
   };
 
+  // eslint-disable-next-line react/sort-comp
   handleMenu = menu => event => {
     const { openMenu } = this.state;
     this.setState({
@@ -40,12 +42,37 @@ class UserMenu extends React.Component {
   };
 
   handleClose = () => {
+    console.log('dawdwa');
     this.setState({ anchorEl: null, openMenu: null });
   };
+
+  handleLogout = () => {
+    localStorage.removeItem('user');
+  }
+
+  componentDidMount() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.setState({ user });
+  }
+
 
   render() {
     const { classes, dark } = this.props;
     const { anchorEl, openMenu } = this.state;
+    const { user } = this.state;
+    let linkProfiler = '/login';
+    if (user) {
+
+      if (user.type === 'admin') {
+        linkProfiler = '/admin/profiler'
+      } else if (user.type === 'company') {
+        linkProfiler = '/companies/profiler';
+      } else {
+        linkProfiler = '/users/profiler';
+      }
+    }
+
+
     return (
       <div>
         <IconButton
@@ -173,7 +200,7 @@ class UserMenu extends React.Component {
           <MenuItem
             onClick={this.handleClose}
             component={Link}
-            to={link.profile}
+            to={linkProfiler}
           >
             Profile
           </MenuItem>
@@ -185,7 +212,7 @@ class UserMenu extends React.Component {
             Inbox
           </MenuItem>
           <Divider />
-          <MenuItem onClick={this.handleClose} component={Link} to="/">
+          <MenuItem onClick={this.handleLogout} component={Link} to="/login">
             Uitloggen
           </MenuItem>
         </Menu>

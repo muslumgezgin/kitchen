@@ -32,6 +32,9 @@ function createUser(data) {
         body: JSON.stringify(data)
 
     }).then(res => {
+        if (res.status === 403) {
+            return { isError: true, shouldLogin: true };
+        }
         return res.json();
     }).then((res) => {
         if (res.error) {

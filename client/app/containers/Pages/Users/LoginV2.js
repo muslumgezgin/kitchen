@@ -39,7 +39,7 @@ class LoginV2 extends React.Component {
       this.props.history.push('/admin');
     } else if (type === 'company') {
       this.props.history.push('/companies');
-    } else if (type === 'user') {
+    } else if (type === 'client') {
       this.props.history.push('/users');
     } 
   }

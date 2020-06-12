@@ -23,6 +23,8 @@ class Admin extends React.Component {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       this.redirect(user.type);
+    } else {
+      this.redirect('login');
     }
   }
 

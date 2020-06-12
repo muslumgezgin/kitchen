@@ -30,7 +30,7 @@ class Companies extends React.Component {
     } else if (type === 'company') {
       this.props.history.push('/companies');
 
-    } else if (type === 'user') {
+    } else if (type === 'client') {
       this.props.history.push('/users');
     } else {
       this.props.history.push('/login');
