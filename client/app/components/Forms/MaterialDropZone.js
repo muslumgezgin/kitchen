@@ -64,6 +64,9 @@ class MaterialDropZone extends React.Component {
         errorMessage: 'Cannot upload more than ' + filesLimitVal + ' items.',
       });
     } else {
+      if (this.props.getFiles) {
+        this.props.getFiles(oldFiles);
+      }
       this.setState({ files: oldFiles });
     }
   }
@@ -87,6 +90,9 @@ class MaterialDropZone extends React.Component {
     window.URL.revokeObjectURL(file.preview);
 
     thisFiles.splice(fileIndex, 1);
+    if (this.props.getFiles) {
+      this.props.getFiles(thisFiles);
+    }
     this.setState({ files: thisFiles });
   }
 
@@ -116,6 +122,7 @@ class MaterialDropZone extends React.Component {
       </div>
     );
     const previews = filesArray => filesArray.map((file, index) => {
+      console.log(file.name)
       const base64Img = URL.createObjectURL(file);
       if (isImage(file)) {
         return (
@@ -124,6 +131,7 @@ class MaterialDropZone extends React.Component {
               <figure className="imgWrap"><img className="smallPreviewImg" src={base64Img} alt="preview" /></figure>
               {deleteBtn(file, index)}
             </div>
+            {file.name}
           </div>
         );
       }
@@ -133,6 +141,7 @@ class MaterialDropZone extends React.Component {
             <FileIcon className="smallPreviewImg" alt="preview" />
             {deleteBtn(file, index)}
           </div>
+          {file.name}
         </div>
       );
     });
@@ -201,6 +210,7 @@ MaterialDropZone.propTypes = {
   maxSize: PropTypes.number.isRequired,
   filesLimit: PropTypes.number.isRequired,
   classes: PropTypes.object.isRequired,
+  getFiles: PropTypes.func
 };
 
 MaterialDropZone.defaultProps = {

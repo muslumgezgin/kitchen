@@ -1,10 +1,15 @@
 .newOfferComponent {
-  width: 761px;
-  height: 719px;
+  width: 80%;
   border-radius: 15px;
   -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.16);
   display: inline-block;
-  margin-left: 20%;;
+  margin: {
+    left: 10%;
+    top: 40px;
+  }
+  padding: {
+    bottom: 40px;
+  }
 }

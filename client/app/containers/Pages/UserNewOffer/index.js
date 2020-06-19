@@ -26,18 +26,9 @@ class UserNewOffer extends React.Component {
                     <meta property="twitter:title" content={title} />
                     <meta property="twitter:description" content={description} />
                 </Helmet>
-                <BlankPage desc="Some text description" link="/users/newOffer">
                     <div className={css.newOfferComponent}>
                         <GetPersonalInfo />
-                        <Button
-                            variant="contained"
-                            color=""
-                            className={css2.seeButton}
-                        >
-                            BEKIJKEN &nbsp; &#x279C;
-                        </Button>
                     </div>
-                </BlankPage>
             </div>
 
         );

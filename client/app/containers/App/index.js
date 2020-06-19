@@ -8,6 +8,7 @@ import LandingCreative from './LandingCreative';
 import ArticleNews from './ArticleNews';
 import Users from './Users';
 import Companies from './Companies';
+import UserNewOffer from './../Pages/UserNewOffer'
 
 import ThemeWrapper, { AppContext } from './ThemeWrapper';
 import Admin from './Admin';
@@ -51,6 +52,9 @@ class App extends React.Component {
                 path="/companies"
                 render={props => <Companies {...props} />}
               />
+              <Route 
+              path="/widget/newoffer"
+              component={UserNewOffer}/>
 
               <Route component={Auth} />
               <Route component={NotFound} />

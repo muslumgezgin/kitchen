@@ -1,4 +1,5 @@
-.conceptButton{
+$small: 400px;
+.conceptButton {
     width: 114px;
     height: 36px;
     border-radius: 18px;
@@ -7,11 +8,9 @@
     line-height: 1.36;
     font-weight: 600;
     font-size: 14px;
-
-
 }
 
-.actiefButton{
+.actiefButton {
     width: 114px;
     height: 36px;
     border-radius: 18px;
@@ -20,10 +19,9 @@
     line-height: 1.36;
     font-weight: 600;
     font-size: 14px;
-
 }
 
-.afgehandeldButton{
+.afgehandeldButton {
     width: 134px;
     height: 36px;
     border-radius: 18px;
@@ -34,11 +32,23 @@
 }
 
 .seeButton {
+    background-color: #0090e3 !important;
+    color: #ffffff !important;
+}
+
+.vidgetButton {
     width: 168px;
     height: 41px;
     border-radius: 18px;
-    background-color: #0090e3;
-    font-size: 14px;
     font-weight: bold;
-    color: #ffffff;
-  }
+    font-size: 14px;
+    @media screen and (max-width: $small) {
+        width: 120px;
+        font-size: 12px;
+
+    }
+}
+
+.floatRight {
+    float: right;
+}
