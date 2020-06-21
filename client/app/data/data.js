@@ -45,11 +45,18 @@ function createUser(data) {
 }
 
 function createOrderFromWidget(data) {
-    return fetch(`${config.fetchLinkUrl}widget/offer`).then(res => {
+    return fetch(`${config.fetchLinkUrl}widget/offer`, {
+        method: 'POST',
+        headers: { 
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data' 
+        },
+        data: data,
+    }).then(res => {
         if (res.status === 403) {
             return { isError: true, shouldLogin: true };
         }
-        return res.json();
+        return res
     }).then((res) => {
         if (res.error) {
             return Promise.reject(res.error);

@@ -104,6 +104,7 @@ class MaterialDropZone extends React.Component {
       text,
       showButton,
       filesLimit,
+      header,
       ...rest
     } = this.props;
 
@@ -162,6 +163,7 @@ class MaterialDropZone extends React.Component {
             <div {...getRootProps()} className={classNames(classes.dropItem, 'dropZone')}>
               <div className="dropzoneTextStyle">
                 <input {...getInputProps()} />
+                {header && <h2>{header}</h2>}
                 <p className="dropzoneParagraph">{text}</p>
                 <div className={classes.uploadIconSize}>
                   <CloudUpload />
@@ -210,7 +212,8 @@ MaterialDropZone.propTypes = {
   maxSize: PropTypes.number.isRequired,
   filesLimit: PropTypes.number.isRequired,
   classes: PropTypes.object.isRequired,
-  getFiles: PropTypes.func
+  getFiles: PropTypes.func,
+  header: PropTypes.string
 };
 
 MaterialDropZone.defaultProps = {

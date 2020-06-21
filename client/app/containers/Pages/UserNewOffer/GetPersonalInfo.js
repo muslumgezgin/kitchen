@@ -10,6 +10,7 @@ import css2 from 'dan-styles/Buttons.scss';
 import styled from 'styled-components';
 import config from '../../../actions/config';
 import { Link } from 'react-router-dom';
+import { createOrderFromWidget } from '../../../data/data';
 
 const StyledLastPage = styled.div`
   height:"1500px";
@@ -129,7 +130,7 @@ class GetPersonalInfo extends Component {
     }
     handlePageStatus() {
         let { count, value, isEmail, name, isError, files,
-            house_number, postcode, city, land, telephone_number, answer_one, answer_second
+            house_number, postcode, city, land, telephone_number, answer_one, answer_second, email, street
         } = this.state;
         if (count === 1) {
             if (name && isEmail && files.length > 0) {
@@ -142,9 +143,46 @@ class GetPersonalInfo extends Component {
         } else if (count === 2) {
             if (house_number && postcode && city && land
                 && telephone_number && answer_one && answer_second) {
+
+                let data = new FormData();
+                let offer = {
+                    type: 'keuken',
+                    specs: {
+                        name: 'sef',
+                        user: { email }
+                    },
+                    street,
+                    house_number,
+                    postcode,
+                    city,
+                    land,
+                    telephone_number,
+                    answer_one,
+                    answer_second
+                }
+
+                /* files.forEach(file => {
+                    data.append('files[]', file, file.name);
+                });
+                data.append('offer', JSON.stringify(offer));
+                console.log(JSON.stringify(offer))
+
+                createOrderFromWidget(data).then(res => {
+                    if (res.error) {
+
+                    } else if (res.isError || res.shouldLogin) {
+
+                    }
+                    else {
+                        count++;
+                        value = 100;
+                        isError = false;
+                    }
+                }) */
                 count++;
                 value = 100;
                 isError = false;
+
             } else {
                 isError = true;
             }
@@ -255,7 +293,9 @@ class GetPersonalInfo extends Component {
                                         showPreviews
                                         maxSize={5000000}
                                         filesLimit={5}
-                                        text="Drag and drop file(s) here or click button bellow"
+                                        text="Sleep bestanden hierheen
+                                        of klik op bladeren"
+                                        header='Upload uw offerte'
                                         showButton={false}
                                         getFiles={this.getFiles}
                                     />
@@ -447,7 +487,7 @@ class GetPersonalInfo extends Component {
                         className={css2.seeButton + " " + css2.floatRight + " " + css2.vidgetButton}
                         onClick={this.handlePageStatus}
                     >
-                        BEKIJKEN &nbsp; &#x279C;
+                        Volgende &nbsp; &#x279C;
                 </Button>
                 }
 
