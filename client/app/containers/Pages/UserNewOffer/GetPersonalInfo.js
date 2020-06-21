@@ -106,7 +106,7 @@ class GetPersonalInfo extends Component {
             files: [],
             isError: false,
             value: 10,
-            count: 3,
+            count: 1,
             answer_one: "6 maanden",
             answer_second: "6 maanden",
             email: "",
