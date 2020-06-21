@@ -103,6 +103,7 @@ class AdvFilter extends React.Component {
 
     renderStatus(status) {
         let name = status + 'Button';
+        console.log(css[name]);
         return (
             <Button
                 variant="contained"

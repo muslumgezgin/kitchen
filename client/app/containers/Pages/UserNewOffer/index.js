@@ -27,7 +27,7 @@ class UserNewOffer extends React.Component {
                     <meta property="twitter:description" content={description} />
                 </Helmet>
                     <div className={css.newOfferComponent}>
-                        <GetPersonalInfo />
+                        <GetPersonalInfo history={this.props.history}/>
                     </div>
             </div>
 

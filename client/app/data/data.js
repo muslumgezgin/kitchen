@@ -7,7 +7,7 @@
 import config from '../actions/config';
 
 function login(data) {
-    return fetch(`${config.navLink.url}login`, {
+    return fetch(`${config.fetchLinkUrl}login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -26,7 +26,7 @@ function login(data) {
     });
 }
 function createUser(data) {
-    return fetch(`${config.navLink.url}register`, {
+    return fetch(`${config.fetchLinkUrl}register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -44,7 +44,22 @@ function createUser(data) {
     });
 }
 
+function createOrderFromWidget(data) {
+    return fetch(`${config.fetchLinkUrl}widget/offer`).then(res => {
+        if (res.status === 403) {
+            return { isError: true, shouldLogin: true };
+        }
+        return res.json();
+    }).then((res) => {
+        if (res.error) {
+            return Promise.reject(res.error);
+        }
+        return res;
+    });
+}
+
 export {
     login,
-    createUser
+    createUser,
+    createOrderFromWidget
 };
