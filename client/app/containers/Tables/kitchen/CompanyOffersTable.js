@@ -86,8 +86,8 @@ class AdvFilter extends React.Component {
             },
         ],
         data: [
-            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Rotterdam, NL', "€ 12.500'", 0, "sfe"],
-            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam, NL', "€ 11.500'", 3, "sfe"],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Rotterdam, NL', "€ 12.500'", 0, "1"],
+            ['Modernkeuken 23 Offerte vergelijken', '18-08-2019', 'Amsterdam, NL', "€ 11.500'", 3, "2"],
 
         ]
     }
@@ -99,6 +99,9 @@ class AdvFilter extends React.Component {
                 variant="contained"
                 color=""
                 className={css.seeButton}
+                onClick={() => {
+                    this.props.history.push('/companies/offers/' + link)
+                }}
             >
                 BEKIJKEN &nbsp; &#x279C;
             </Button>

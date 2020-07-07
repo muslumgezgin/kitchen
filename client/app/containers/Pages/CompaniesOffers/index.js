@@ -49,17 +49,17 @@ class CompaniesOffers extends React.Component {
 
                     <hr />
                     {
-                        value === 0 && <CompanyNiewOffersTable />
+                        value === 0 && <CompanyNiewOffersTable history={this.props.history} />
                     }
                     {
-                        value === 1 && <CompanyArrangedTable />
+                        value === 1 && <CompanyArrangedTable  history={this.props.history}/>
                     }
                     {
-                        value === 2 && <CompanyOffersTable />
+                        value === 2 && <CompanyOffersTable history={this.props.history} />
                     }
 
                     {
-                        value === 3 && <CompanyFinishedTable />
+                        value === 3 && <CompanyFinishedTable history={this.props.history} />
                     }
                 </BlankPage>
             </div>

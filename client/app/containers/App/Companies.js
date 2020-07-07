@@ -12,7 +12,8 @@ import {
   CompaniesOffersPage,
   BlankPage,
   NotFound,
-  CompaniesProfile
+  CompaniesProfile,
+  CompaniesOffersDetailsPage
 } from '../pageListAsync';
 
 class Companies extends React.Component {
@@ -46,7 +47,8 @@ class Companies extends React.Component {
       <Dashboard history={history} changeMode={changeMode} dataMenu={dataMenu}>
         <Switch>
           <Route exact path="/companies" component={CompaniesDashBoardPage} />
-          <Route path="/companies/offers" component={CompaniesOffersPage} />
+          <Route exact path="/companies/offers" component={CompaniesOffersPage} />
+          <Route path="/companies/offers/:id" component={CompaniesOffersDetailsPage} />
           <Route path="/companies/messages" component={Chat} />
           <Route path="/companies/profiler" component={CompaniesProfile} />
           <Route component={NotFound} />

@@ -375,6 +375,11 @@ export const CompaniesOffersPage = loadable(() =>
   fallback: <Loading />,
 });
 
+export const CompaniesOffersDetailsPage = loadable(() =>
+  import('./Pages/CompanyOffersDetails'), {
+  fallback: <Loading />,
+});
+
 export const AdminOffersPage = loadable(() =>
   import('./Pages/admin/AdminOffers'), {
   fallback: <Loading />,

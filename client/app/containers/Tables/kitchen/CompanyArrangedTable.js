@@ -80,7 +80,7 @@ class AdvFilter extends React.Component {
             },
         ],
         data: [
-            ['Modernkeuken 25Offerte vergelijken', '18-08-2019', 'Rotterdam, NL', 3, "sfe"],
+            ['Modernkeuken 25Offerte vergelijken', '18-08-2019', 'Rotterdam, NL', 3, "1"],
         ]
     }
 
@@ -91,6 +91,9 @@ class AdvFilter extends React.Component {
                 variant="contained"
                 color=""
                 className={css.seeButton}
+                onClick={() => {
+                    this.props.history.push('/companies/offers/' + link)
+                }}
             >
                 BEKIJKEN &nbsp; &#x279C;
             </Button>
