@@ -5,7 +5,6 @@ import MessageIcon from '@material-ui/icons/Message';
 import { Button } from '@material-ui/core';
 import { DetailsContainer } from './style';
 
-
 export default class ReactionDetails extends Component {
     state = {
         file: []
