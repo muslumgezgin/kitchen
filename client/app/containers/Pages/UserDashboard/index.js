@@ -61,12 +61,12 @@ class UserDashBoard extends React.Component {
                 </Helmet>
                 <BlankPage desc="Some text description" link="/users/newOffer">
                     <Grid container spacing={3}>
-                        <Grid item xs={1} />
-                        <Grid item xs={9}>
+                        <Grid item xs={0} md={1} />
+                        <Grid item xs={12} md={9}>
                             <Grid container>
                                 {datas.map((data, index) => (
                                     // eslint-disable-next-line react/no-array-index-key
-                                    <Grid item xs={4} key={index}>
+                                    <Grid item xs={12} md={4} key={index}>
                                         <RectangleBlock data={data}>
                                             Content
                                         </RectangleBlock>
@@ -75,18 +75,18 @@ class UserDashBoard extends React.Component {
 
                             </Grid>
                         </Grid>
-                        <Grid item xs={1} />
+                        <Grid item md={1} xs={0} />
                     </Grid>
                     <Grid container spacing={3}>
-                        <Grid item xs={1} />
-                        <Grid item xs={9}>
+                        <Grid item xs={0} md={1} />
+                        <Grid item xs={12} md={9}>
                             <Grid container>
-                                <Grid item xs={1} />
-                                <Grid item xs={5}>
+                                <Grid item xs={0} md={1} />
+                                <Grid item xs={12} md={5}>
                                     <MessagesList data={messagesData} />
                                 </Grid>
-                                <Grid item xs={1} />
-                                <Grid item xs={5}>
+                                <Grid item xs={0} md={1} />
+                                <Grid item md={5} xs={12}>
                                     <OffersList data={UserData} />
                                 </Grid>
                             </Grid>

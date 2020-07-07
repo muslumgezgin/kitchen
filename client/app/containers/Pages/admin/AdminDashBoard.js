@@ -3,13 +3,36 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
-import { Grid } from '@material-ui/core';
+import { Grid, withStyles, makeStyles } from '@material-ui/core';
 import { OffersList, MessagesList, RectangleBlock } from 'dan-components';
 import BlankPage from '../BlankPage';
+import { adminDashBoardCounts } from '../../../data/data';
 
-
+const useStyles = makeStyles((theme) => ({
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+  }));
 class UserDashBoard extends React.Component {
+    state = {
+        info: null
+    }
+    componentDidMount() {
+        adminDashBoardCounts().then(res => {
+            if (res.isError || res.shouldLogin) {
+                console.error('errors')
+            }
+            if (res.error) {
+                console.error('error')
+            }
+            this.setState({ info: res })
+        })
+    }
     render() {
+
+    
         const title = brand.name + ' - Blank Page';
         const description = brand.desc;
         const datas = [
@@ -62,14 +85,13 @@ class UserDashBoard extends React.Component {
                     <meta property="twitter:description" content={description} />
                 </Helmet>
                 <BlankPage desc="Some text description" link="/users/newOffer">
-                    <Grid container spacing={3}>
-                        <Grid item xs={1} />
-                        <Grid item xs={11}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={11} md={12}>
                             <Grid container>
                                 {datas.map((data, index) => (
                                     // eslint-disable-next-line react/no-array-index-key
-                                    <Grid item xs={3} key={index}>
-                                        <RectangleBlock data={data}>
+                                    <Grid item xs={12} md={3} key={index}>
+                                        <RectangleBlock  data={data}>
                                             Content
                                         </RectangleBlock>
                                     </Grid>
@@ -80,15 +102,15 @@ class UserDashBoard extends React.Component {
                         <Grid item xs={0} />
                     </Grid>
                     <Grid container spacing={3}>
-                        <Grid item xs={1} />
-                        <Grid item xs={9}>
+                        <Grid item xs={0} sm={1} />
+                        <Grid item xs={0} sm={9}>
                             <Grid container>
-                                <Grid item xs={1} />
-                                <Grid item xs={5} xl={11}>
+                                <Grid item sm={1} xs={0}/>
+                                <Grid item xs={12} sm={5}>
                                     <MessagesList data={messagesData} />
                                 </Grid>
-                                <Grid item xs={1} />
-                                <Grid item xs={5} xl={11}>
+                                <Grid item sm={1} xs={0}/>
+                                <Grid item xs={12} sm={5}>
                                     <OffersList data={UserData} />
                                 </Grid>
                             </Grid>
@@ -101,4 +123,4 @@ class UserDashBoard extends React.Component {
     }
 }
 
-export default UserDashBoard;
+export default (UserDashBoard);

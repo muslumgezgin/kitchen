@@ -128,7 +128,6 @@ class AdvFilter extends React.Component {
     return (
       <div className={classes.table}>
         <MUIDataTable
-          title="Employee list"
           data={data}
           columns={columns}
           options={options}

@@ -123,7 +123,6 @@ class AdvFilter extends React.Component {
         return (
             <div className={css2.multiTableContainer}>
                 <MUIDataTable
-                    title="Employee list"
                     data={data}
                     columns={columns}
                     options={options}

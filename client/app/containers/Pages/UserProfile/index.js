@@ -6,105 +6,20 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import CreateIcon from "@material-ui/icons/Create";
 //
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 //
 import dummy from "dan-api/dummy/dummyContents";
 import { withStyles } from "@material-ui/core/styles";
-import data from "dan-api/apps/timelineData";
-import { fetchAction } from "dan-actions/SocmedActions";
-import styled from "styled-components";
 import styles from "dan-components/SocialMedia/jss/cover-jss";
 // form fields..
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import { Select, TextField } from "@material-ui/core";
-
-
-const ProfileWrapper = styled.section`
-  width: 100%;
-  height: 100%;
-  padding: 26px 62px;
-  box-shadow: 0 10px 15px 0 rgba(205, 205, 205, 0.5);
-  background-color: #ffffff;
-  font-family: OpenSans;
-`;
-const ProfilNavBar = styled.nav`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  button {
-    width: 246px;
-    height: 41px;
-    border-radius: 18px;
-    background-color: #ff6600;
-
-    // button text:
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-  }
-`;
-const ProfilePhotoWrapper = styled.figure`
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-  }
-`;
-const Figcaption = styled.figcaption`
-  display: grid;
-  margin-left: 18px;
-  font-family: SourceSansPro;
-  font-size: 14px;
-  color: #000000;
-
-  button {
-    padding: 0;
-  }
-  span {
-    color: #8b8b8b;
-    font-size: 14px;
-    font-family: SourceSansPro;
-  }
-`;
-const FormField = styled.section`
-  width: 100%;
-  margin-top: 35px;
-  text-align: left;
-
-  .formLabel{
-    font-size: 14px;
-    font-weight: bold;
-    color: #000000;
-  }
-
-  .selectLabel {
-    // font-size: 9px; // this value has requested by designer but I think he needs glasses🧐
-    font-weight: 600;
-    color: #2196f3;
-  }
-
-  .genderSelection {
-    width: 137px;
-    height: 40px;
-    border-radius: 6px;
-    border: solid 1px #2196f3;
-  }
-  .menuItem{
-    font-size: 13px;
-    color: rgba(0, 0, 0, 0.54);
-  }
-
-`;
+import { Select, TextField, Grid, Typography, IconButton, InputBase, Divider } from "@material-ui/core";
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import { ProfileWrapper, useStyles, Figcaption, FormField, ProfilNavBar, ProfilePhotoWrapper, ButtonsContainer } from "./style";
+import cssButtons from 'dan-styles/Buttons.scss'
+import SearchIcons from "../../UiElements/IconGallery/SearchIcons";
+import Dropzone from "react-dropzone";
+import { Link } from "react-router-dom";
 
 function TabContainer(props) {
   const { children } = props;
@@ -117,12 +32,28 @@ TabContainer.propTypes = {
 
 class UserProfile extends React.Component {
   state = {
-    value: 0
+    value: 0,
+    photo: null,
+    salutation: '',
+    first_name: '',
+    kvk_number: '',
+    surname: '',
+    company_name: '',
+    telephone_number: '',
+    street: '',
+    house_number: '',
+    postcode: '',
+    city: '',
+    land: '',
+    photo: '',
+    email: '',
+    oldPassword: '',
+    newPassword: '',
+    file: null
   };
 
   componentDidMount() {
-    const { fetchData } = this.props;
-    fetchData(data);
+
   }
 
   handleChange = (event, value) => {
@@ -131,7 +62,10 @@ class UserProfile extends React.Component {
 
   // todo: implement this to change profile photo
   profilePhotoChange = () => {
-    console.log("comming soon");
+    this.state.file.click();
+  };
+  handleFile = e => {
+    this.setState({ ...this.state, [e.target.name]: e.target.files[0] });
   };
 
   // todo: implement this to change submit new user infos
@@ -143,7 +77,21 @@ class UserProfile extends React.Component {
     const title = brand.name + " - Profile";
     const description = brand.desc;
     const { classes } = this.props;
-    const { value } = this.state;
+    const {
+      value,
+      file, salutation,
+      first_name, company_name,
+      telephone_number, street,
+      house_number, postcode, city,
+      land, email, photo, oldPassword,
+      newPassword, kvk_number
+    } = this.state;
+    let base64Img = dummy.user.avatar;
+
+    if (file) {
+      base64Img = URL.createObjectURL(file);
+    }
+
     return (
       <div>
         <Helmet>
@@ -166,7 +114,8 @@ class UserProfile extends React.Component {
             </Button>
           </ProfilNavBar>
           <ProfilePhotoWrapper>
-            <img src={dummy.user.avatar} alt="" />
+            <img src={base64Img} alt="" />
+
             <Figcaption>
               Profielfoto
               <Button
@@ -174,41 +123,317 @@ class UserProfile extends React.Component {
                 className={classes.buttonLink}
                 onClick={this.profilePhotoChange}
               >
-                <CreateIcon fontSize="small" htmlColor="#818181" />
-                <span>Wijzigen</span>
+
+                <Dropzone
+                  onDrop={acceptedFiles => this.setState({ file: acceptedFiles[0] })}
+                  accept="image/*"
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <section>
+                      <div {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        <CreateIcon fontSize="small" htmlColor="#818181" />
+                        <span>Wijzigen</span>
+                      </div>
+                    </section>
+                  )}
+                </Dropzone>
               </Button>
             </Figcaption>
           </ProfilePhotoWrapper>
-          <FormField>
-            <form onSubmit={this.handleSubmit}>
-              <div className={classes.field}>
-                <FormLabel className='formLabel' component="label">Aanhef</FormLabel>
-                <InputLabel className="selectLabel" id="selection">
-                  Gekozen item
-                </InputLabel>
-                <Select
-                  className="genderSelection"
-                  name="selection"
-                  labelId="selection"
-                  placeholder="Selection"
-                >
-                  <MenuItem className='menuItem' value="Dhr.">Dhr.</MenuItem>
-                  <MenuItem className='menuItem' value="Mvr.">Mvr.</MenuItem>
-                  <MenuItem className='menuItem' value="mixi">mixi</MenuItem>
-                </Select>
-                <TextField value='muslumdsa' id="outlined-basic" className='InputName inputField' label="Outlined" variant="outlined" />
-              </div>
-              <TextField value='muslum' id="outlined-basic" className='InputAdress inputField' label="Outlined" variant="outlined" />
-              <TextField value='muslum'
-                id="outlined-basic"
-                className='InputHouseNumber inputField'
-                label="Outlined"
-                variant="outlined" />
+          <Grid container spacing={3} style={{ marginTop: "50px" }}>
+            <Grid xs={12} sm={2} className={classes.padding1}>
+              <Typography className={classes.label} variant="button">
+                Aanhef
+              </Typography>
+              <FormField>
+                <FormControl variant="outlined" className="formControl">
+                  <InputLabel htmlFor="outlined-age-native-simple">Gekozen Item</InputLabel>
+                  <Select
+                    native
+                    value={salutation}
+                    className={"formControl selectView "}
+                    placeholder="Dhr."
+                    onChange={(e) => {
+                      let salutation = e.target.value;
+                      this.setState({ salutation });
+                    }}
+                    label="Gekozen Item"
+                    inputProps={{
+                      name: 'age',
+                      id: 'outlined-age-native-simple',
+                    }}
+                  >
+                    <option className='option' value="Dhr.">Dhr.</option>
+                    <option className='option' value="Mvr.">Mvr.</option>
+                  </Select>
+                </FormControl>
+              </FormField>
+            </Grid>
+            <Grid sm={3} xs={12} >
+              <Typography className={classes.label} variant="button">
+                Naam
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="Hans"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={first_name}
+                onChange={(e) => {
+                  let first_name = e.target.value;
+                  this.setState({ first_name });
+                }}
+              />
+            </Grid>
 
+            <Grid sm={5} xs={12} className={classes.margin2Left}>
+            <Typography className={classes.label} variant="button">
+                Bedrijfsnaam
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="Superkeukens"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={company_name}
+                onChange={(e) => {
+                  let company_name = e.target.value;
+                  this.setState({ company_name });
+                }}
+              />
+            </Grid>
+            <Grid sm={4} xs={12} className={classes.padding1}>
+              <Typography className={classes.label} variant="button">
+                Adres
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="Romorkstraat"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={street}
+                onChange={(e) => {
+                  let street = e.target.value;
+                  this.setState({ street });
+                }}
+              />
+            </Grid>
+            <Grid sm={1} xs={12}>
+              <Typography className={classes.label} variant="button">
+                Huisnur.
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="1"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={house_number}
+                onChange={(e) => {
+                  let house_number = e.target.value;
+                  this.setState({ house_number });
+                }}
+              />
+            </Grid>
+            <Grid sm={5} xs={12} className={classes.margin2Left}>
+              <Typography className={classes.label} variant="button">
+                Telefon
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="+31621816448"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={telephone_number}
+                onChange={(e) => {
+                  let telephone_number = e.target.value;
+                  this.setState({ telephone_number });
+                }}
+              />
+            </Grid>
+            <Grid sm={2} xs={12} className={classes.padding1}>
+              <Typography className={classes.label} variant="button">
+                Postcode
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="1034 LE"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={postcode}
+                onChange={(e) => {
+                  let postcode = e.target.value;
+                  this.setState({ postcode });
+                }}
+              />
+            </Grid>
 
-            </form>
-          </FormField>
+            <Grid sm={3} xs={12}>
+              <Typography className={classes.label} variant="button">
+                Woonplaats
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="Amsterdam"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={city}
+                onChange={(e) => {
+                  let city = e.target.value;
+                  this.setState({ city });
+                }}
+              />
+            </Grid>
+
+            <Grid sm={4} xs={12} className={classes.margin1Left}>
+              <Typography className={classes.label} variant="button">
+                Land
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="Nederland"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={land}
+                onChange={(e) => {
+                  let land = e.target.value;
+                  this.setState({ land });
+                }}
+              />
+            </Grid>
+          </Grid>
+          <Divider className={classes.divider} variant='fullWidth' component='hr' />
+          <Grid container spacing={3} style={{ marginTop: '20px' }}>
+            <Grid sm={5} xs={12}>
+              <Typography className={classes.label} variant="button">
+                E-mail
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder="info@ideastudio.nl"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={email}
+                onChange={(e) => {
+                  let email = e.target.value;
+                  this.setState({ email });
+                }}
+              />
+            </Grid>
+            <Grid sm={7} xs={0} />
+
+            <Grid sm={5} xs={12}>
+              <Typography className={classes.label} variant="button">
+                Huidige wachtwoord
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder=""
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={oldPassword}
+                onChange={(e) => {
+                  let oldPassword = e.target.value;
+                  this.setState({ oldPassword });
+                }}
+              />
+            </Grid>
+            <Grid sm={5} xs={12} className={classes.marginLeftNormal}>
+              <Typography className={classes.label} variant="button">
+                Nieuwe wachtwoord
+              </Typography>
+              <TextField
+                id="outlined-full-width"
+                placeholder=""
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                className={classes.paper}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={newPassword}
+                onChange={(e) => {
+                  let newPassword = e.target.value;
+                  this.setState({ newPassword });
+                }}
+              />
+            </Grid>
+          </Grid>
+          <Grid  className={classes.link} >
+            <Link style={{color:'#ff6600'}} to="/reset-password" >Wachtwoord vergeten?</Link>
+          </Grid>
+          <ButtonsContainer>
+            <Button
+              variant="contained"
+              color="default"
+              className={classes.button + " " + cssButtons.backButton}
+            >
+              Anulleren
+           </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button + " " + cssButtons.seeButton}
+              endIcon={<ArrowForwardIcon></ArrowForwardIcon>}
+            >
+              OPSLAAN
+            </Button>
+          </ButtonsContainer>
         </ProfileWrapper>
+
+
+
       </div>
     );
   }
@@ -216,22 +441,8 @@ class UserProfile extends React.Component {
 
 UserProfile.propTypes = {
   classes: PropTypes.object.isRequired,
-  fetchData: PropTypes.func.isRequired
 };
 
-const reducer = "socmed";
-const mapStateToProps = state => ({
-  force: state, // force state from reducer
-  dataProps: state.getIn([reducer, "dataTimeline"])
-});
 
-const constDispatchToProps = dispatch => ({
-  fetchData: bindActionCreators(fetchAction, dispatch)
-});
 
-const UserProfileMapped = connect(
-  mapStateToProps,
-  constDispatchToProps
-)(UserProfile);
-
-export default withStyles(styles)(UserProfileMapped);
+export default withStyles(useStyles)(UserProfile);

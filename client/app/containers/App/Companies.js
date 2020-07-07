@@ -11,7 +11,8 @@ import {
   CompaniesDashBoardPage,
   CompaniesOffersPage,
   BlankPage,
-  NotFound
+  NotFound,
+  CompaniesProfile
 } from '../pageListAsync';
 
 class Companies extends React.Component {
@@ -28,8 +29,10 @@ class Companies extends React.Component {
       this.props.history.push('/admin');
 
     } else if (type === 'company') {
-      this.props.history.push('/companies');
-
+      if(this.props.match.path !== '/companies')
+      {
+        this.props.history.push('/companies');
+      }      
     } else if (type === 'client') {
       this.props.history.push('/users');
     } else {
@@ -42,10 +45,10 @@ class Companies extends React.Component {
     return (
       <Dashboard history={history} changeMode={changeMode} dataMenu={dataMenu}>
         <Switch>
-          <Route exact path="/companies/dashboard" component={CompaniesDashBoardPage} />
+          <Route exact path="/companies" component={CompaniesDashBoardPage} />
           <Route path="/companies/offers" component={CompaniesOffersPage} />
           <Route path="/companies/messages" component={Chat} />
-          <Route path="/app/pages/blank-page" component={BlankPage} />
+          <Route path="/companies/profiler" component={CompaniesProfile} />
           <Route component={NotFound} />
         </Switch>
       </Dashboard>

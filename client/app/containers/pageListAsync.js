@@ -317,7 +317,7 @@ export const ComingSoon = loadable(() =>
   import('./Pages/ComingSoon'), {
   fallback: <Loading />,
 });
-export const Profile = loadable(() =>
+export const UsersProfile = loadable(() =>
   import('./Pages/UserProfile'), {
   fallback: <Loading />,
 });
@@ -345,6 +345,11 @@ export const CompaniesDashBoardPage = loadable(() =>
   fallback: <Loading />,
 });
 
+export const CompaniesProfile = loadable(() =>
+  import('./Pages/CompanyProfile'), {
+  fallback: <Loading />,
+});
+
 export const AdminDashBoardPage = loadable(() =>
   import('./Pages/admin/AdminDashBoard'), {
   fallback: <Loading />,
@@ -352,6 +357,16 @@ export const AdminDashBoardPage = loadable(() =>
 
 export const UserOffersPage = loadable(() =>
   import('./Pages/UserOffers'), {
+  fallback: <Loading />,
+});
+
+export const UserOffersReactions = loadable(() =>
+  import('./Pages/UserOffers'), {
+  fallback: <Loading />,
+});
+
+export const UserOffersDetails = loadable(() =>
+  import('./Pages/UserOffersDetails'), {
   fallback: <Loading />,
 });
 
@@ -374,6 +389,17 @@ export const AdminCompaniesList = loadable(() =>
   import('./Pages/admin/CompaniesList'), {
   fallback: <Loading />,
 });
+export const AdminInstallation = loadable(() =>
+  import('./Pages/admin/AdminInstalation'), {
+  fallback: <Loading />,
+});
+
+export const Thanks = loadable(() =>
+  import('./Pages/Thanks'), {
+  fallback: <Loading />,
+});
+
+
 export const Pricing = loadable(() =>
   import('./Pages/Pricing'), {
   fallback: <Loading />,

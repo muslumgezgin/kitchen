@@ -12,7 +12,10 @@ import {
   UserOffersPage,
   BlankPage,
   NotFound,
-  UserNewOfferPage
+  UserNewOfferPage,
+  UserOffersDetails,
+  UsersProfile,
+  UserOffersReactions
 } from '../pageListAsync';
 
 class Users extends React.Component {
@@ -32,7 +35,11 @@ class Users extends React.Component {
       this.props.history.push('/companies');
 
     } else if (type === 'client') {
-      this.props.history.push('/users');
+
+      if (this.props.match.path !== '/users') {
+        this.props.history.push('/users');
+      }
+
     } else {
       this.props.history.push('/login');
     }
@@ -44,10 +51,15 @@ class Users extends React.Component {
       <Dashboard history={history} changeMode={changeMode} dataMenu={dataMenu}>
         <Switch>
           {/* Home */}
-          <Route exact path="/users/dashboard" component={UserDashboardPage} />
-          <Route path="/users/offers" component={UserOffersPage} />
+          <Route exact path="/users" component={UserDashboardPage} />
+          <Route path="/users/offers" exact  component={UserOffersPage} />
+          <Route path="/users/offers/:id" component={UserOffersDetails} />
+          <Route path="/users/reactions" exact  component={UserOffersReactions} />
+          <Route path="/users/reactions/:
+            id"   component={UserOffersReactions} />
           <Route path="/users/messages" component={Chat} />
           <Route path="/users/newOffer" component={UserNewOfferPage} />
+          <Route path="/users/profiler" component={UsersProfile} />                    
           <Route path="/app/pages/blank-page" component={BlankPage} />
 
           {/* Default */}

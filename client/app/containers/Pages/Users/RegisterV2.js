@@ -19,7 +19,17 @@ class RegisterV2 extends React.Component {
       const valueForm = values.toJS();
       this.setState({ valueForm });
       console.log(`You submitted:\n\n${this.state.valueForm}`); // eslint-disable-line
-      createUser(valueForm);
+      createUser(valueForm).then(data=>{
+        console.log('sfesf');
+        if(data.isError)
+        {
+
+        }
+        else{
+
+          this.props.history.push('/thanks')
+        }
+      });
     }, 500); // simulate server latency
   }
 

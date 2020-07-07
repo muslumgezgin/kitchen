@@ -7,86 +7,17 @@ import { withStyles, lighten } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { MaterialDropZone } from 'dan-components';
 import css2 from 'dan-styles/Buttons.scss';
-import styled from 'styled-components';
 import config from '../../../actions/config';
 import { Link } from 'react-router-dom';
+import { styles, StyledLastPage } from './style';
 import { createOrderFromWidget } from '../../../data/data';
 
-const StyledLastPage = styled.div`
-  height:"1500px";
-  width:'1000px';
-  font-size: 28px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.29;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000000;
-  margin-bottom:45px;
-  @media screen and (max-width: 400px) {
-        font-size: 24px;
-
-    }
-`
 
 function validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
-const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-    },
-    menu: {
-        width: 200,
-    },
-    label: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        lineHeight: 1.36,
-        marginLeft: '20px'
-    },
-    margin: {
-        marginTop: '20px',
-        marginLeft: '20px',
-        marginBottom: '30px'
-    },
-    upload: {
-        marginLeft: '10px',
-        marginTop: '20px'
-    },
-    root: {
-        flexGrow: 1,
-        paddingBottom: theme.spacing(15)
-    },
-    paper: {
-        paddingRight: theme.spacing(1),
-        paddingLeft: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-    formControl: {
-        width: '100%',
-        paddingTop: theme.spacing(2),
-    },
-    labelError: {
-        marginLeft: "20px",
-    },
-    selectForm: {
-        height: "3.6em"
-    },
-    pushCenter: {
-        marginLeft: '25%',
-        marginRight: '25%',
-        marginTop: '15%'
-    }
-});
+
 
 const BorderLinearProgress = withStyles({
     root: {
@@ -161,7 +92,7 @@ class GetPersonalInfo extends Component {
                     answer_second
                 }
 
-                /* files.forEach(file => {
+                files.forEach(file => {
                     data.append('files[]', file, file.name);
                 });
                 data.append('offer', JSON.stringify(offer));
@@ -178,7 +109,7 @@ class GetPersonalInfo extends Component {
                         value = 100;
                         isError = false;
                     }
-                }) */
+                })
                 count++;
                 value = 100;
                 isError = false;

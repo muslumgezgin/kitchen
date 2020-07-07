@@ -11,6 +11,7 @@ class RectangleBlock extends React.Component {
     const {
       data
     } = this.props;
+
     return (
       <div className={css.ReactangleConmponent}>
         <Typography component="h3">

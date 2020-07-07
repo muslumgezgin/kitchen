@@ -6,7 +6,7 @@ $large:750px;
     height: 36px;
     border-radius: 18px;
     background-color: #f5a623 !important;
-    color: #ffffff;
+    color: #ffffff !important;
     line-height: 1.36;
     font-weight: 600;
     font-size: 14px;
@@ -17,7 +17,7 @@ $large:750px;
     height: 36px;
     border-radius: 18px;
     background-color: #7ed321 !important;
-    color: #ffffff;
+    color: #ffffff !important;
     line-height: 1.36;
     font-weight: 600;
     font-size: 14px;
@@ -28,7 +28,7 @@ $large:750px;
     height: 36px;
     border-radius: 18px;
     background-color: #e3f2fd !important;
-    color: #0090e3;
+    color: #0090e3 !important;
     font-weight: 600;
     font-size: 14px;
 }
@@ -36,6 +36,12 @@ $large:750px;
 .seeButton {
     background-color: #0090e3 !important;
     color: #ffffff !important;
+}
+
+.backButton {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: solid 1px #979797 !important;
 }
 
 .vidgetButton {

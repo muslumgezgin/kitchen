@@ -68,7 +68,7 @@ class RegisterFormV2 extends React.Component {
         <div className={classes.topBar}>
           <NavLink to="/" className={classes.brand}>
             <img src={logo} alt={brand.name} />
-            {brand.name}
+            bedrijfslogo
           </NavLink>
           <Button
             size="small"
@@ -81,7 +81,7 @@ class RegisterFormV2 extends React.Component {
           </Button>
         </div>
         <Typography variant="h4" className={classes.title} gutterBottom>
-          Register
+          Registeren
         </Typography>
         <Typography
           variant="caption"
@@ -89,19 +89,7 @@ class RegisterFormV2 extends React.Component {
           gutterBottom
           align="center"
         >
-          Lorem ipsum dolor sit amet
         </Typography>
-        <Tabs
-          value={tab}
-          onChange={this.handleChangeTab}
-          indicatorColor="secondary"
-          textColor="secondary"
-          centered
-          className={classes.tab}
-        >
-          <Tab label="With Email" />
-          <Tab label="With Social Media" />
-        </Tabs>
         {tab === 0 && (
           <section>
             <form onSubmit={handleSubmit}>

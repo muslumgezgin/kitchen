@@ -65,8 +65,32 @@ function createOrderFromWidget(data) {
     });
 }
 
+
+
+
+function adminDashBoardCounts() {
+    return fetch(`${config.fetchLinkUrl}admin/dashboard/counts`, {
+        method: 'POST',
+    }).then(res => {
+        if (res.status === 403) {
+            return { isError: true, shouldLogin: true };
+        }
+        return res
+    }).then((res) => {
+        if (res.error) {
+            return Promise.reject(res.error);
+        }
+        return res;
+    });
+}
+
+
+
+
+
 export {
     login,
     createUser,
-    createOrderFromWidget
+    createOrderFromWidget,
+    adminDashBoardCounts
 };

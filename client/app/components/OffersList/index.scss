@@ -5,6 +5,10 @@
   border: solid 1px #0090e3;
   float: right;
   margin-top: 5%;
+  @media screen and (max-width: 961px) {
+    float: none;
+    margin-left: 25%;
+  }
 }
 .listContent {
   margin: {
