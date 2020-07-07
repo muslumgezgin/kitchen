@@ -25,7 +25,7 @@ class UserOffers extends React.Component {
                     <meta property="twitter:description" content={description} />
                 </Helmet>
                 <BlankPage desc="Some text description" link="/users/newOffer">
-                    <OffersListKlantTable />
+                    <OffersListKlantTable history={this.props.history} />
                 </BlankPage>
             </div>
         );

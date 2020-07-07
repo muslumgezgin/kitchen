@@ -54,9 +54,7 @@ class Users extends React.Component {
           <Route exact path="/users" component={UserDashboardPage} />
           <Route path="/users/offers" exact  component={UserOffersPage} />
           <Route path="/users/offers/:id" component={UserOffersDetails} />
-          <Route path="/users/reactions" exact  component={UserOffersReactions} />
-          <Route path="/users/reactions/:
-            id"   component={UserOffersReactions} />
+          <Route exact path="/users/reactions/:id"   component={UserOffersReactions} />
           <Route path="/users/messages" component={Chat} />
           <Route path="/users/newOffer" component={UserNewOfferPage} />
           <Route path="/users/profiler" component={UsersProfile} />                    

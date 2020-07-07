@@ -82,9 +82,9 @@ class AdvFilter extends React.Component {
             },
         ],
         data: [
-            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'actief', "sfe"],
-            ['Offerte aanvraag 1', 'Business Consultant', [55, 2], 'concept', "fsdfs"],
-            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'afgehandeld', "fsfd"],
+            ['Offerte vergelijking 1', '18-08-2019', [100, 2], 'actief', "1"],
+            ['Offerte aanvraag 1', 'Business Consultant', [55, 2], 'concept', "2"],
+            ['3d ontwerp 1 ', 'Attorney', [27, 2], 'afgehandeld', "3"],
         ]
     }
 
@@ -94,6 +94,9 @@ class AdvFilter extends React.Component {
                 variant="contained"
                 color=""
                 className={css.seeButton}
+                onClick={() => {
+                    this.props.history.push('/users/offers/' + link)
+                }}
             >
                 BEKIJKEN &nbsp; &#x279C;
             </Button>
