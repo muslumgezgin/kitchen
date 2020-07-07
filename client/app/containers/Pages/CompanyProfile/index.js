@@ -22,6 +22,7 @@ import Dropzone from "react-dropzone";
 import { Link } from "react-router-dom";
 import FirstComponent from "./FirstComponent";
 import SeconComponent from "./SeconComponent";
+import ThirdComponent from "./ThirdComponent";
 
 function TabContainer(props) {
   const { children } = props;
@@ -106,6 +107,8 @@ class UserProfile extends React.Component {
           </Tabs>
           {value === 0 && <FirstComponent state={this.state} classes={classes} handleState={this.handleState} />}
           {value === 1 && <SeconComponent state={this.state} classes={classes} handleState={this.handleState} />}
+          {value === 2 && <ThirdComponent state={this.state} classes={classes} handleState={this.handleState} />}
+
 
           <ButtonsContainer>
             <Button
