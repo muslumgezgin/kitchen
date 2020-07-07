@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Button } from '@material-ui/core'
-import OffersDetails from './OffersDetails'
-import CompaniesBids from './CompaniesBids';
+import OffersDetails from './ReactionDetails'
+import CompaniesBids from './CompaniesProfile';
 import BlankPage from '../BlankPage';
 
 import styled from 'styled-components';
@@ -21,19 +21,8 @@ margin-bottom:20px;
 }
 `;
 
-export default class UserOffersDetails extends Component {
-    renderStatus(status) {
-        let name = status + 'Button';
-        return (
-            <Button
-                variant="contained"
-                color=""
-                className={button[name]}
-            >
-                {status.toUpperCase()}
-            </Button>
-        );
-    }
+export default class UserOffersReactions extends Component {
+
     render() {
         return (
             <BlankPage>
@@ -42,7 +31,6 @@ export default class UserOffersDetails extends Component {
                     <span className="text-style-1">Offertereactie: </span>
                     Keukenconcurrent
                 </HedearText>
-                {this.renderStatus('actief')}
                     <Grid container spacing={3}>
                         <Grid xs={12} md={5}>
                             <OffersDetails />

@@ -361,7 +361,7 @@ export const UserOffersPage = loadable(() =>
 });
 
 export const UserOffersReactions = loadable(() =>
-  import('./Pages/UserOffers'), {
+  import('./Pages/UserOffersReaction'), {
   fallback: <Loading />,
 });
 

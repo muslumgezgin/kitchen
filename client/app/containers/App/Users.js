@@ -52,9 +52,9 @@ class Users extends React.Component {
         <Switch>
           {/* Home */}
           <Route exact path="/users" component={UserDashboardPage} />
-          <Route path="/users/offers" exact  component={UserOffersPage} />
+          <Route path="/users/reactions/:id"   component={UserOffersReactions} />
+          <Route exact path="/users/offers"   component={UserOffersPage} />
           <Route path="/users/offers/:id" component={UserOffersDetails} />
-          <Route exact path="/users/reactions/:id"   component={UserOffersReactions} />
           <Route path="/users/messages" component={Chat} />
           <Route path="/users/newOffer" component={UserNewOfferPage} />
           <Route path="/users/profiler" component={UsersProfile} />                    
